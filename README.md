@@ -11,7 +11,7 @@
 
 * 下载 **CrasheyePluginXcode.xcplugin**，将其拖到如下目录并重启 **XCode**
 
-> ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins****
+> ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
 
 
 ## 卸载
