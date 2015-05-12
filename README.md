@@ -3,13 +3,13 @@
 
 
 ## 下载
-* __CrasheyeXCodePlugin__         传送门:[CrasheyeXCodePlugin](https://raw.githubusercontent.com/GangWang/Crasheye/master/XCodePlugin/CrasheyePluginXcode.zip)
+* __CrasheyeXCodePlugin__         传送门:[CrasheyeXCodePlugin](https://raw.githubusercontent.com/GangWang/Crasheye/master/XCodePlugin/CrasheyePluginXcode.xcplugin.zip)
 * __Crasheye__ 各平台 __SDK__ 下载，传送门:[http://www.crasheye.cn/sdk](http://www.crasheye.cn/sdk)
 
 
 ## 安装
 
-* 下载 **CrasheyePluginXcode.xcplugin**，将其拖到如下目录并重启 **XCode**
+* 下载 **CrasheyePluginXcode.xcplugin** 并解压，将解压后的文件拖到如下目录并重启 **XCode**
 
 > ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
 
