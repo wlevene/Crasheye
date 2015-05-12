@@ -21,7 +21,7 @@
 
 
 ## 使用
-安装成功后会在 __XCode___ 的菜单 **XCode->Product** 下添加 **Crasheye** 菜单项
+安装成功后会在 __XCode__ 的菜单 **XCode->Product** 下添加 **Crasheye** 菜单项
 
 ##### 打开XCode工程
 
