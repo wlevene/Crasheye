@@ -1,5 +1,5 @@
 # Crasheye XCode Plugin
-CrasheyeXCodePlugin 针对iOS APP开发接入并升级Crasheye SDK过程，使SDK的接入和升级可以一键完成
+* CrasheyeXCodePlugin 针对iOS APP开发接入并升级Crasheye SDK过程，使SDK的接入和升级可以一键完成
 
 
 ## 下载
@@ -9,13 +9,13 @@ CrasheyeXCodePlugin 针对iOS APP开发接入并升级Crasheye SDK过程，使SD
 
 ## 安装
 
-下载 **CrasheyePluginXcode.xcplugin**，将其拖到如下目录并重启**XCode**
+* 下载 **CrasheyePluginXcode.xcplugin**，将其拖到如下目录并重启**XCode**
 
 > ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
 
 
 ## 卸载
-进入如下目录，删除 **CrasheyePluginXcode.xcplugin** ，并重启**XCode**
+* 进入如下目录，删除 **CrasheyePluginXcode.xcplugin** ，并重启**XCode**
 
 > ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
 
@@ -39,8 +39,8 @@ CrasheyeXCodePlugin 针对iOS APP开发接入并升级Crasheye SDK过程，使SD
 
 	[Crasheye initWithAppkey:@"Appkey"];
 	
-这行代码，在此处填入自己的Appkey就完成了 **Crasheye SDK** 的接入和升级。
+这行代码，在此处填入自己的 __Appkey__ 就完成了 **Crasheye SDK** 的接入和升级。
 
 
 ---
-更多内容请访问:[Crasheye](http://www.crasheye.cn)
+* 更多内容请访问:[http://www.crasheye.cn](http://www.crasheye.cn)
