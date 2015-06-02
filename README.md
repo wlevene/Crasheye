@@ -9,6 +9,11 @@
 
 ## 安装
 
+### 方式一
+* 下载此工程点击运行后，重启xcode
+
+### 方式二
+
 * 下载 **CrasheyePluginXcode.xcplugin** 并解压，将解压后的文件拖到如下目录并重启 **XCode**
 
 > ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
