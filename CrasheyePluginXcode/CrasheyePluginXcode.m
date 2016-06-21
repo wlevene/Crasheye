@@ -28,6 +28,7 @@
 #import "ZZArchive.h"
 #import "ZZArchiveEntry.h"
 #import "NSAlert+BlockMethods.h"
+#import "RegexKitLite.h"
 
 
 @class XCProjectBuildConfig;
@@ -359,7 +360,6 @@ static CrasheyePluginXcode *sharedPlugin;
     {
         return;
     }
-    
     
     NSString * projectFile = self.mProject.projectFile;
     
@@ -741,12 +741,17 @@ static CrasheyePluginXcode *sharedPlugin;
         NSString * fileName = [file name];
         if (fileName != nil)
         {
+            if (![fileName isEqualToString:@"main.m"]) {
+                continue;
+            }
+            
             NSString * headFullPath = nil;
             
             if ([file type] == SourceCodeObjC ||
                 [file type] == SourceCodeObjCPlusPlus)
             {
                 headFullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
+                NSLog(@"%@", headFullPath);
                 
                 NSError * err = nil;
                 NSString * hFileString = [NSString stringWithContentsOfFile:headFullPath
@@ -758,113 +763,279 @@ static CrasheyePluginXcode *sharedPlugin;
                     continue;
                 }
                 
-                NSArray * codesLineArray = [hFileString componentsSeparatedByString:@"\n"];
+                [self addCrasheyeCode:headFullPath];
                 
-                int line = 0;
-                BOOL findFun = NO;
-                int firstImportLine = 0;
-                BOOL kuohaoFind = NO;
-                for (NSString * lineCode in codesLineArray)
-                {
-                    line++;
-                    NSString * linCodeEx = [lineCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    
-                    if (findFun) {
-                        
-                        if (kuohaoFind) {
-                            break;
-                        }
-                        
-                        if (linCodeEx == nil ||
-                            [linCodeEx isEqualToString:@""])
-                        {
-                            continue;
-                        }
-                        
-                        if ([linCodeEx isEqualToString:@"{"])
-                        {
-                            break;
-                        }
-                    }
-                    
-                    if (firstImportLine == 0 &&
-                        [linCodeEx containsString:@"#import"])
-                    {
-                        firstImportLine = line;
-                    }
-
-                    
-                    // TODO... 规则可丰富
-                    if ([linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary *)launchOptions"] ||
-                        [linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary*)launchOptions"])
-                    {
-                        findFun = YES;
-                        if ([linCodeEx containsString:@"{"])
-                        {
-                            kuohaoFind = YES;
-                        }
-                    }
-                }
-                
-                if (!findFun)
-                {
-                    continue;
-                }
-                
-                NSString * addHeaderCode = @"#import \"Crasheye.h\"";
-                NSString * addCode = @"    [Crasheye initWithAppKey:@\"<#Appkey #>\"];";
-                NSMutableArray * newCodeArray = [NSMutableArray arrayWithArray:codesLineArray];
-                
-                if (![hFileString containsString:addHeaderCode])
-                {
-                    [newCodeArray insertObject:addHeaderCode atIndex:firstImportLine];
-                }
-                
-                if (![hFileString containsString:@"[Crasheye initWithAppKey:"])
-                {
-                    [newCodeArray insertObject:addCode atIndex:line];
-                }
-                
-                
-                NSString * newCodeString = [newCodeArray bondingAString:@"\n"];
-                
-                id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
-                if ([appDelegate application:NSApp openFile:headFullPath])
-                {
-                    NSTextView * textView = [MTSharedXcode textView];
-                    if ( textView )
-                    {
-                        IDESourceCodeDocument * document = [MTSharedXcode sourceCodeDocument];
-                        if ( !document )
-                            return;
-                        
-                        [[
-                          document
-                          textStorage] beginEditing];
-                        
-                        //        [textView setString:@"123"];
-                        
-                        [[document textStorage] replaceCharactersInRange: NSMakeRange(0, textView.string.length) withString:newCodeString withUndoManager:[document undoManager]];
-                        
-                        [[document textStorage] endEditing];
-                        
-                        [document saveDocument:nil];
-                        
-                        
-                        int highlightline = (int)[newCodeArray indexOfObject:addCode];
-                        
-                        
-                        [CrasheyePluginXcode highlightItem:highlightline + 1 inTextView:[MTSharedXcode textView]];
-                        
-                        
-                        [self.xcodeConsole appendText:@"Add Crash Code √\n"];
-                        return;
-                    }
-                }
+                return;
             }
         }
     }
 }
+
+- (void) addCrasheyeCode:(NSString *) filePath
+{
+    NSError * err = nil;
+    NSString * fileContent = [NSString stringWithContentsOfFile:filePath
+                                                       encoding:NSUTF8StringEncoding
+                                                          error:&err];
+    if (err)
+    {
+        NSLog(@"err:%@", err);
+        return;
+    }
+    
+    
+    if ( !fileContent ||
+        [fileContent length] <= 0 )
+        return;
+    
+    //    NSArray * codesLineArray = [fileContent componentsSeparatedByString:@"\n"];
+    
+    
+    NSString * regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
+                                                            pathForResource:@"findmain"
+                                                            ofType:@"reg"]
+                                                  encoding:NSUTF8StringEncoding error:&err];
+    
+    
+    NSLog(@"Crasheye  Add Code : %@",[fileContent stringByMatching:regStr]);
+    NSRange entryFunRange = [fileContent rangeOfRegex:regStr];
+    
+    
+    regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
+                                                 pathForResource:@"findfirstimport"
+                                                 ofType:@"reg"]
+                                       encoding:NSUTF8StringEncoding error:&err];
+    
+    NSRange firstImportRange = [fileContent rangeOfRegex:regStr];
+    
+    NSString * addHeaderCode = @"\n#import \"Crasheye.h\"";
+    
+    id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
+    if ([appDelegate application:NSApp openFile:filePath])
+    {
+        NSTextView * textView = [MTSharedXcode textView];
+        if ( textView )
+        {
+            IDESourceCodeDocument * document = [MTSharedXcode sourceCodeDocument];
+            if ( !document )
+                return;
+            
+            [[document textStorage] beginEditing];
+            
+            
+            
+            
+            if (entryFunRange.length == 0 &&
+                entryFunRange.location >= LONG_MAX) {
+                
+            }else {
+                if (![self isAddedImportCrasheyeInitCode:filePath])
+                {
+                   [[document textStorage] replaceCharactersInRange: NSMakeRange(entryFunRange.location + entryFunRange.length, 0) withString:@"\n    [Crasheye initWithAppKey:@\"<#Appkey #>\"];" withUndoManager:[document undoManager]]; 
+                }
+                
+            }
+            
+            
+            if (firstImportRange.length == 0 &&
+                firstImportRange.location >= LONG_MAX) {
+                
+            }
+            else
+            {
+                if (![self isAddedImportCrasheyeHeaderCode:filePath])
+                {
+                    [[document textStorage] replaceCharactersInRange: NSMakeRange(firstImportRange.location + firstImportRange.length, 0) withString:addHeaderCode withUndoManager:[document undoManager]];
+                }
+            }
+            
+            [[document textStorage] endEditing];
+            
+            [document saveDocument:nil];
+            [CrasheyePluginXcode highlightItem:1 inTextView:[MTSharedXcode textView]];
+        }
+    }
+}
+
+-(BOOL) isAddedImportCrasheyeHeaderCode:(NSString *) filePath
+{
+    NSError * err = nil;
+    NSString * hFileString = [NSString stringWithContentsOfFile:filePath
+                                                       encoding:NSUTF8StringEncoding
+                                                          error:&err];
+    if (err)
+    {
+        NSLog(@"err:%@", err);
+        return FALSE;
+    }
+    
+    NSString * addHeaderCode = @"#import \"Crasheye.h\"";
+    if (![hFileString containsString:addHeaderCode])
+    {
+        return FALSE;
+    }
+    
+    return TRUE;
+    
+}
+
+
+-(BOOL) isAddedImportCrasheyeInitCode:(NSString *) filePath
+{
+    NSError * err = nil;
+    NSString * hFileString = [NSString stringWithContentsOfFile:filePath
+                                                       encoding:NSUTF8StringEncoding
+                                                          error:&err];
+    if (err)
+    {
+        NSLog(@"err:%@", err);
+        return FALSE;
+    }
+    
+    NSString * addHeaderCode = @"Crasheye initWithAppKey";
+    if (![hFileString containsString:addHeaderCode])
+    {
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
+
+//
+//- (void) addCrasheyeCodeToAppDelegateFile
+//{
+//    XCProject* project = [[XCProject alloc] initWithFilePath:self.mProject.projectFileDir];
+//    NSArray * allfiles = [project files];
+//    for (XCSourceFile * file in allfiles)
+//    {
+//        NSString * fileName = [file name];
+//        if (fileName != nil)
+//        {
+//            NSString * headFullPath = nil;
+//            
+//            if ([file type] == SourceCodeObjC ||
+//                [file type] == SourceCodeObjCPlusPlus)
+//            {
+//                headFullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
+//                
+//                NSError * err = nil;
+//                NSString * hFileString = [NSString stringWithContentsOfFile:headFullPath
+//                                                                   encoding:NSUTF8StringEncoding
+//                                                                      error:&err];
+//                if (err)
+//                {
+//                    NSLog(@"err:%@", err);
+//                    continue;
+//                }
+//                
+//                NSArray * codesLineArray = [hFileString componentsSeparatedByString:@"\n"];
+//                
+//                int line = 0;
+//                BOOL findFun = NO;
+//                int firstImportLine = 0;
+//                BOOL kuohaoFind = NO;
+//                for (NSString * lineCode in codesLineArray)
+//                {
+//                    line++;
+//                    NSString * linCodeEx = [lineCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//                    
+//                    if (findFun) {
+//                        
+//                        if (kuohaoFind) {
+//                            break;
+//                        }
+//                        
+//                        if (linCodeEx == nil ||
+//                            [linCodeEx isEqualToString:@""])
+//                        {
+//                            continue;
+//                        }
+//                        
+//                        if ([linCodeEx isEqualToString:@"{"])
+//                        {
+//                            break;
+//                        }
+//                    }
+//                    
+//                    if (firstImportLine == 0 &&
+//                        [linCodeEx containsString:@"#import"])
+//                    {
+//                        firstImportLine = line;
+//                    }
+//
+//                    
+//                    // TODO... 规则可丰富
+//                    if ([linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary *)launchOptions"] ||
+//                        [linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary*)launchOptions"])
+//                    {
+//                        findFun = YES;
+//                        if ([linCodeEx containsString:@"{"])
+//                        {
+//                            kuohaoFind = YES;
+//                        }
+//                    }
+//                }
+//                
+//                if (!findFun)
+//                {
+//                    continue;
+//                }
+//                
+//                NSString * addHeaderCode = @"#import \"Crasheye.h\"";
+//                NSString * addCode = @"    [Crasheye initWithAppKey:@\"<#Appkey #>\"];";
+//                NSMutableArray * newCodeArray = [NSMutableArray arrayWithArray:codesLineArray];
+//                
+//                if (![hFileString containsString:addHeaderCode])
+//                {
+//                    [newCodeArray insertObject:addHeaderCode atIndex:firstImportLine];
+//                }
+//                
+//                if (![hFileString containsString:@"[Crasheye initWithAppKey:"])
+//                {
+//                    [newCodeArray insertObject:addCode atIndex:line];
+//                }
+//                
+//                
+//                NSString * newCodeString = [newCodeArray bondingAString:@"\n"];
+//                
+//                id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
+//                if ([appDelegate application:NSApp openFile:headFullPath])
+//                {
+//                    NSTextView * textView = [MTSharedXcode textView];
+//                    if ( textView )
+//                    {
+//                        IDESourceCodeDocument * document = [MTSharedXcode sourceCodeDocument];
+//                        if ( !document )
+//                            return;
+//                        
+//                        [[
+//                          document
+//                          textStorage] beginEditing];
+//                        
+//                        //        [textView setString:@"123"];
+//                        
+//                        [[document textStorage] replaceCharactersInRange: NSMakeRange(0, textView.string.length) withString:newCodeString withUndoManager:[document undoManager]];
+//                        
+//                        [[document textStorage] endEditing];
+//                        
+//                        [document saveDocument:nil];
+//                        
+//                        
+//                        int highlightline = (int)[newCodeArray indexOfObject:addCode];
+//                        
+//                        
+//                        [CrasheyePluginXcode highlightItem:highlightline + 1 inTextView:[MTSharedXcode textView]];
+//                        
+//                        
+//                        [self.xcodeConsole appendText:@"Add Crash Code √\n"];
+//                        return;
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 
 // Sample Action, for menu item:

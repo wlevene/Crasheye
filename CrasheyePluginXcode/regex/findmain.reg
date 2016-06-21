@@ -1,0 +1,1 @@
+\bint\b[\s\S]*main[\s\S]*\([\s\S]*int[\s\S]*argc[\s\S]*,[\s\S]*char[\s\S]*\*[\s\S]*argv\[\][\s\S]*\)\s+\{

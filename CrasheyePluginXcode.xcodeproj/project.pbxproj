@@ -34,6 +34,11 @@
 		23A34F7D1AF745BC006E731F /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F7C1AF745BC006E731F /* MTProject.m */; };
 		23A34F801AF74604006E731F /* MTPWorkspaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F7F1AF74604006E731F /* MTPWorkspaceManager.m */; };
 		23A34F831AF7469A006E731F /* MTCodeConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F821AF7469A006E731F /* MTCodeConsole.m */; };
+		23C0185A1D19372B0014D4E0 /* findfirstimport.reg in Resources */ = {isa = PBXBuildFile; fileRef = 23C018541D19372B0014D4E0 /* findfirstimport.reg */; };
+		23C0185B1D19372B0014D4E0 /* findimportcrasheye.reg in Resources */ = {isa = PBXBuildFile; fileRef = 23C018551D19372B0014D4E0 /* findimportcrasheye.reg */; };
+		23C0185C1D19372B0014D4E0 /* findintcrasheye.reg in Resources */ = {isa = PBXBuildFile; fileRef = 23C018561D19372B0014D4E0 /* findintcrasheye.reg */; };
+		23C0185D1D19372B0014D4E0 /* findmain.reg in Resources */ = {isa = PBXBuildFile; fileRef = 23C018571D19372B0014D4E0 /* findmain.reg */; };
+		23C0185E1D19372B0014D4E0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C018591D19372B0014D4E0 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		23C59AB61AF78F49001ABF9F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C59AB51AF78F49001ABF9F /* libicucore.dylib */; };
 		23CD2CAA1AFB3BA7005B55B0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CD2CA81AFB3BA7005B55B0 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		23CD2CB21AFB4455005B55B0 /* NSAlert+BlockMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CD2CB11AFB4455005B55B0 /* NSAlert+BlockMethods.m */; };
@@ -117,6 +122,12 @@
 		23A34F7F1AF74604006E731F /* MTPWorkspaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPWorkspaceManager.m; sourceTree = "<group>"; };
 		23A34F811AF7469A006E731F /* MTCodeConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCodeConsole.h; sourceTree = "<group>"; };
 		23A34F821AF7469A006E731F /* MTCodeConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCodeConsole.m; sourceTree = "<group>"; };
+		23C018541D19372B0014D4E0 /* findfirstimport.reg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = findfirstimport.reg; sourceTree = "<group>"; };
+		23C018551D19372B0014D4E0 /* findimportcrasheye.reg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = findimportcrasheye.reg; sourceTree = "<group>"; };
+		23C018561D19372B0014D4E0 /* findintcrasheye.reg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = findintcrasheye.reg; sourceTree = "<group>"; };
+		23C018571D19372B0014D4E0 /* findmain.reg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = findmain.reg; sourceTree = "<group>"; };
+		23C018581D19372B0014D4E0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		23C018591D19372B0014D4E0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		23C59AB51AF78F49001ABF9F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		23CD2CA71AFB3BA7005B55B0 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		23CD2CA81AFB3BA7005B55B0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -277,6 +288,19 @@
 			path = class;
 			sourceTree = "<group>";
 		};
+		23C018531D19372B0014D4E0 /* regex */ = {
+			isa = PBXGroup;
+			children = (
+				23C018541D19372B0014D4E0 /* findfirstimport.reg */,
+				23C018551D19372B0014D4E0 /* findimportcrasheye.reg */,
+				23C018561D19372B0014D4E0 /* findintcrasheye.reg */,
+				23C018571D19372B0014D4E0 /* findmain.reg */,
+				23C018581D19372B0014D4E0 /* RegexKitLite.h */,
+				23C018591D19372B0014D4E0 /* RegexKitLite.m */,
+			);
+			path = regex;
+			sourceTree = "<group>";
+		};
 		23CD2CA41AFB3BA7005B55B0 /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +407,7 @@
 		23FC5C9B1AF71CE4002ED770 /* CrasheyePluginXcode */ = {
 			isa = PBXGroup;
 			children = (
+				23C018531D19372B0014D4E0 /* regex */,
 				23F5C0021AF9FB460094E7BF /* NSArray+NSArrayExtension.h */,
 				23F5C0031AF9FB460094E7BF /* NSArray+NSArrayExtension.m */,
 				23D038821AF8AEC200CB045E /* xprivates.h */,
@@ -461,6 +486,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23C0185C1D19372B0014D4E0 /* findintcrasheye.reg in Resources */,
+				23C0185B1D19372B0014D4E0 /* findimportcrasheye.reg in Resources */,
+				23C0185D1D19372B0014D4E0 /* findmain.reg in Resources */,
+				23C0185A1D19372B0014D4E0 /* findfirstimport.reg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +520,7 @@
 				23CD2D771AFB50D8005B55B0 /* ZZStandardDecryptInputStream.mm in Sources */,
 				23CD2D741AFB50D8005B55B0 /* ZZOldArchiveEntry.mm in Sources */,
 				23A34F831AF7469A006E731F /* MTCodeConsole.m in Sources */,
+				23C0185E1D19372B0014D4E0 /* RegexKitLite.m in Sources */,
 				23958DC01D1915F200E72C3D /* XCSubProjectDefinition.m in Sources */,
 				23CD2D6B1AFB50D8005B55B0 /* ZZDataChannel.m in Sources */,
 				23F5C0041AF9FB460094E7BF /* NSArray+NSArrayExtension.m in Sources */,
