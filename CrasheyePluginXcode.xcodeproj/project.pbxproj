@@ -12,6 +12,25 @@
 		230B5DD61AF8B0DC007AFF35 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230B5DD51AF8B0DC007AFF35 /* Cocoa.framework */; };
 		230B5DD81AF8B11B007AFF35 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230B5DD71AF8B11B007AFF35 /* DVTFoundation.framework */; };
 		230B5DDC1AF8B149007AFF35 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230B5DDB1AF8B149007AFF35 /* DVTKit.framework */; };
+		23958DB01D1915F200E72C3D /* XCKeyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D891D1915F200E72C3D /* XCKeyBuilder.m */; };
+		23958DB11D1915F200E72C3D /* XCAbstractDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D8B1D1915F200E72C3D /* XCAbstractDefinition.m */; };
+		23958DB21D1915F200E72C3D /* XCBuildShellScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D8D1D1915F200E72C3D /* XCBuildShellScript.m */; };
+		23958DB31D1915F200E72C3D /* XCBuildShellScriptDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D8F1D1915F200E72C3D /* XCBuildShellScriptDefinition.m */; };
+		23958DB41D1915F200E72C3D /* XCClassDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D911D1915F200E72C3D /* XCClassDefinition.m */; };
+		23958DB51D1915F200E72C3D /* XCFileOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D931D1915F200E72C3D /* XCFileOperationQueue.m */; };
+		23958DB61D1915F200E72C3D /* XCFrameworkDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D951D1915F200E72C3D /* XCFrameworkDefinition.m */; };
+		23958DB71D1915F200E72C3D /* XCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D971D1915F200E72C3D /* XCGroup.m */; };
+		23958DB81D1915F200E72C3D /* XcodeMemberType.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D9B1D1915F200E72C3D /* XcodeMemberType.m */; };
+		23958DB91D1915F200E72C3D /* XcodeSourceFileType.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D9D1D1915F200E72C3D /* XcodeSourceFileType.m */; };
+		23958DBA1D1915F200E72C3D /* XcodeSourceTreeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958D9F1D1915F200E72C3D /* XcodeSourceTreeType.m */; };
+		23958DBB1D1915F200E72C3D /* XCProject+SubProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DA11D1915F200E72C3D /* XCProject+SubProject.m */; };
+		23958DBC1D1915F200E72C3D /* XCProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DA31D1915F200E72C3D /* XCProject.m */; };
+		23958DBD1D1915F200E72C3D /* XCProjectBuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DA51D1915F200E72C3D /* XCProjectBuildConfig.m */; };
+		23958DBE1D1915F200E72C3D /* XCSourceFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DA71D1915F200E72C3D /* XCSourceFile.m */; };
+		23958DBF1D1915F200E72C3D /* XCSourceFileDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DA91D1915F200E72C3D /* XCSourceFileDefinition.m */; };
+		23958DC01D1915F200E72C3D /* XCSubProjectDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DAB1D1915F200E72C3D /* XCSubProjectDefinition.m */; };
+		23958DC11D1915F200E72C3D /* XCTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DAD1D1915F200E72C3D /* XCTarget.m */; };
+		23958DC21D1915F200E72C3D /* XCXibDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23958DAF1D1915F200E72C3D /* XCXibDefinition.m */; };
 		23A34F7D1AF745BC006E731F /* MTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F7C1AF745BC006E731F /* MTProject.m */; };
 		23A34F801AF74604006E731F /* MTPWorkspaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F7F1AF74604006E731F /* MTPWorkspaceManager.m */; };
 		23A34F831AF7469A006E731F /* MTCodeConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34F821AF7469A006E731F /* MTCodeConsole.m */; };
@@ -37,28 +56,11 @@
 		23CD2D771AFB50D8005B55B0 /* ZZStandardDecryptInputStream.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23CD2D641AFB50D8005B55B0 /* ZZStandardDecryptInputStream.mm */; };
 		23CD2D781AFB50D8005B55B0 /* ZZStoreOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CD2D661AFB50D8005B55B0 /* ZZStoreOutputStream.m */; };
 		23CD2D7A1AFB516D005B55B0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD2D791AFB516D005B55B0 /* libz.dylib */; };
-		23D0386C1AF86A3800CB045E /* XCKeyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038481AF86A3800CB045E /* XCKeyBuilder.m */; };
-		23D0386D1AF86A3800CB045E /* XCAbstractDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0384A1AF86A3800CB045E /* XCAbstractDefinition.m */; };
-		23D0386E1AF86A3800CB045E /* XCClassDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0384C1AF86A3800CB045E /* XCClassDefinition.m */; };
-		23D0386F1AF86A3800CB045E /* XCFileOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0384E1AF86A3800CB045E /* XCFileOperationQueue.m */; };
-		23D038701AF86A3800CB045E /* XCFrameworkDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038501AF86A3800CB045E /* XCFrameworkDefinition.m */; };
-		23D038711AF86A3800CB045E /* XCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038521AF86A3800CB045E /* XCGroup.m */; };
-		23D038721AF86A3800CB045E /* XcodeMemberType.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038561AF86A3800CB045E /* XcodeMemberType.m */; };
-		23D038731AF86A3800CB045E /* XcodeSourceFileType.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038581AF86A3800CB045E /* XcodeSourceFileType.m */; };
-		23D038741AF86A3800CB045E /* XCProject+SubProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0385A1AF86A3800CB045E /* XCProject+SubProject.m */; };
-		23D038751AF86A3800CB045E /* XCProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0385C1AF86A3800CB045E /* XCProject.m */; };
-		23D038761AF86A3800CB045E /* XCProjectBuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0385E1AF86A3800CB045E /* XCProjectBuildConfig.m */; };
-		23D038771AF86A3800CB045E /* XCSourceFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038601AF86A3800CB045E /* XCSourceFile.m */; };
-		23D038781AF86A3800CB045E /* XCSourceFileDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038621AF86A3800CB045E /* XCSourceFileDefinition.m */; };
-		23D038791AF86A3800CB045E /* XCSubProjectDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038641AF86A3800CB045E /* XCSubProjectDefinition.m */; };
-		23D0387A1AF86A3800CB045E /* XCTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038661AF86A3800CB045E /* XCTarget.m */; };
-		23D0387B1AF86A3800CB045E /* XCXibDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038681AF86A3800CB045E /* XCXibDefinition.m */; };
 		23D0387E1AF8A19E00CB045E /* XCFrameworkPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D0387D1AF8A19E00CB045E /* XCFrameworkPath.m */; };
 		23D038811AF8AE8700CB045E /* MTSharedXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D038801AF8AE8700CB045E /* MTSharedXcode.m */; };
 		23F5C0041AF9FB460094E7BF /* NSArray+NSArrayExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F5C0031AF9FB460094E7BF /* NSArray+NSArrayExtension.m */; };
 		23FC5C981AF71CE4002ED770 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FC5C971AF71CE4002ED770 /* AppKit.framework */; };
 		23FC5C9A1AF71CE4002ED770 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FC5C991AF71CE4002ED770 /* Foundation.framework */; };
-		23FC5C9F1AF71CE4002ED770 /* CrasheyePluginXcode.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 23FC5C9E1AF71CE4002ED770 /* CrasheyePluginXcode.xcscheme */; };
 		23FC5CA21AF71CE4002ED770 /* CrasheyePluginXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FC5CA11AF71CE4002ED770 /* CrasheyePluginXcode.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,46 @@
 		230B5DD71AF8B11B007AFF35 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		230B5DD91AF8B139007AFF35 /* version.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = version.plist; path = ../../../../../../../../../../../../../../Applications/Xcode.app/Contents/version.plist; sourceTree = "<group>"; };
 		230B5DDB1AF8B149007AFF35 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../../../../../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		23958D881D1915F200E72C3D /* XCKeyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCKeyBuilder.h; sourceTree = "<group>"; };
+		23958D891D1915F200E72C3D /* XCKeyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCKeyBuilder.m; sourceTree = "<group>"; };
+		23958D8A1D1915F200E72C3D /* XCAbstractDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCAbstractDefinition.h; sourceTree = "<group>"; };
+		23958D8B1D1915F200E72C3D /* XCAbstractDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCAbstractDefinition.m; sourceTree = "<group>"; };
+		23958D8C1D1915F200E72C3D /* XCBuildShellScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildShellScript.h; sourceTree = "<group>"; };
+		23958D8D1D1915F200E72C3D /* XCBuildShellScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildShellScript.m; sourceTree = "<group>"; };
+		23958D8E1D1915F200E72C3D /* XCBuildShellScriptDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildShellScriptDefinition.h; sourceTree = "<group>"; };
+		23958D8F1D1915F200E72C3D /* XCBuildShellScriptDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildShellScriptDefinition.m; sourceTree = "<group>"; };
+		23958D901D1915F200E72C3D /* XCClassDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCClassDefinition.h; sourceTree = "<group>"; };
+		23958D911D1915F200E72C3D /* XCClassDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCClassDefinition.m; sourceTree = "<group>"; };
+		23958D921D1915F200E72C3D /* XCFileOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFileOperationQueue.h; sourceTree = "<group>"; };
+		23958D931D1915F200E72C3D /* XCFileOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFileOperationQueue.m; sourceTree = "<group>"; };
+		23958D941D1915F200E72C3D /* XCFrameworkDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFrameworkDefinition.h; sourceTree = "<group>"; };
+		23958D951D1915F200E72C3D /* XCFrameworkDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFrameworkDefinition.m; sourceTree = "<group>"; };
+		23958D961D1915F200E72C3D /* XCGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCGroup.h; sourceTree = "<group>"; };
+		23958D971D1915F200E72C3D /* XCGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCGroup.m; sourceTree = "<group>"; };
+		23958D981D1915F200E72C3D /* XcodeEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeEditor.h; sourceTree = "<group>"; };
+		23958D991D1915F200E72C3D /* XcodeGroupMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeGroupMember.h; sourceTree = "<group>"; };
+		23958D9A1D1915F200E72C3D /* XcodeMemberType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeMemberType.h; sourceTree = "<group>"; };
+		23958D9B1D1915F200E72C3D /* XcodeMemberType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeMemberType.m; sourceTree = "<group>"; };
+		23958D9C1D1915F200E72C3D /* XcodeSourceFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeSourceFileType.h; sourceTree = "<group>"; };
+		23958D9D1D1915F200E72C3D /* XcodeSourceFileType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeSourceFileType.m; sourceTree = "<group>"; };
+		23958D9E1D1915F200E72C3D /* XcodeSourceTreeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeSourceTreeType.h; sourceTree = "<group>"; };
+		23958D9F1D1915F200E72C3D /* XcodeSourceTreeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeSourceTreeType.m; sourceTree = "<group>"; };
+		23958DA01D1915F200E72C3D /* XCProject+SubProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCProject+SubProject.h"; sourceTree = "<group>"; };
+		23958DA11D1915F200E72C3D /* XCProject+SubProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCProject+SubProject.m"; sourceTree = "<group>"; };
+		23958DA21D1915F200E72C3D /* XCProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCProject.h; sourceTree = "<group>"; };
+		23958DA31D1915F200E72C3D /* XCProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCProject.m; sourceTree = "<group>"; };
+		23958DA41D1915F200E72C3D /* XCProjectBuildConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCProjectBuildConfig.h; sourceTree = "<group>"; };
+		23958DA51D1915F200E72C3D /* XCProjectBuildConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCProjectBuildConfig.m; sourceTree = "<group>"; };
+		23958DA61D1915F200E72C3D /* XCSourceFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSourceFile.h; sourceTree = "<group>"; };
+		23958DA71D1915F200E72C3D /* XCSourceFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSourceFile.m; sourceTree = "<group>"; };
+		23958DA81D1915F200E72C3D /* XCSourceFileDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSourceFileDefinition.h; sourceTree = "<group>"; };
+		23958DA91D1915F200E72C3D /* XCSourceFileDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSourceFileDefinition.m; sourceTree = "<group>"; };
+		23958DAA1D1915F200E72C3D /* XCSubProjectDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSubProjectDefinition.h; sourceTree = "<group>"; };
+		23958DAB1D1915F200E72C3D /* XCSubProjectDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSubProjectDefinition.m; sourceTree = "<group>"; };
+		23958DAC1D1915F200E72C3D /* XCTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCTarget.h; sourceTree = "<group>"; };
+		23958DAD1D1915F200E72C3D /* XCTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTarget.m; sourceTree = "<group>"; };
+		23958DAE1D1915F200E72C3D /* XCXibDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCXibDefinition.h; sourceTree = "<group>"; };
+		23958DAF1D1915F200E72C3D /* XCXibDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCXibDefinition.m; sourceTree = "<group>"; };
 		23A34F7B1AF745BC006E731F /* MTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProject.h; sourceTree = "<group>"; };
 		23A34F7C1AF745BC006E731F /* MTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProject.m; sourceTree = "<group>"; };
 		23A34F7E1AF74604006E731F /* MTPWorkspaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPWorkspaceManager.h; sourceTree = "<group>"; };
@@ -126,40 +168,6 @@
 		23CD2D651AFB50D8005B55B0 /* ZZStoreOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZStoreOutputStream.h; sourceTree = "<group>"; };
 		23CD2D661AFB50D8005B55B0 /* ZZStoreOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZStoreOutputStream.m; sourceTree = "<group>"; };
 		23CD2D791AFB516D005B55B0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		23D038471AF86A3800CB045E /* XCKeyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCKeyBuilder.h; sourceTree = "<group>"; };
-		23D038481AF86A3800CB045E /* XCKeyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCKeyBuilder.m; sourceTree = "<group>"; };
-		23D038491AF86A3800CB045E /* XCAbstractDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCAbstractDefinition.h; sourceTree = "<group>"; };
-		23D0384A1AF86A3800CB045E /* XCAbstractDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCAbstractDefinition.m; sourceTree = "<group>"; };
-		23D0384B1AF86A3800CB045E /* XCClassDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCClassDefinition.h; sourceTree = "<group>"; };
-		23D0384C1AF86A3800CB045E /* XCClassDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCClassDefinition.m; sourceTree = "<group>"; };
-		23D0384D1AF86A3800CB045E /* XCFileOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFileOperationQueue.h; sourceTree = "<group>"; };
-		23D0384E1AF86A3800CB045E /* XCFileOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFileOperationQueue.m; sourceTree = "<group>"; };
-		23D0384F1AF86A3800CB045E /* XCFrameworkDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFrameworkDefinition.h; sourceTree = "<group>"; };
-		23D038501AF86A3800CB045E /* XCFrameworkDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFrameworkDefinition.m; sourceTree = "<group>"; };
-		23D038511AF86A3800CB045E /* XCGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCGroup.h; sourceTree = "<group>"; };
-		23D038521AF86A3800CB045E /* XCGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCGroup.m; sourceTree = "<group>"; };
-		23D038531AF86A3800CB045E /* XcodeEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeEditor.h; sourceTree = "<group>"; };
-		23D038541AF86A3800CB045E /* XcodeGroupMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeGroupMember.h; sourceTree = "<group>"; };
-		23D038551AF86A3800CB045E /* XcodeMemberType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeMemberType.h; sourceTree = "<group>"; };
-		23D038561AF86A3800CB045E /* XcodeMemberType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeMemberType.m; sourceTree = "<group>"; };
-		23D038571AF86A3800CB045E /* XcodeSourceFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeSourceFileType.h; sourceTree = "<group>"; };
-		23D038581AF86A3800CB045E /* XcodeSourceFileType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeSourceFileType.m; sourceTree = "<group>"; };
-		23D038591AF86A3800CB045E /* XCProject+SubProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCProject+SubProject.h"; sourceTree = "<group>"; };
-		23D0385A1AF86A3800CB045E /* XCProject+SubProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCProject+SubProject.m"; sourceTree = "<group>"; };
-		23D0385B1AF86A3800CB045E /* XCProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCProject.h; sourceTree = "<group>"; };
-		23D0385C1AF86A3800CB045E /* XCProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCProject.m; sourceTree = "<group>"; };
-		23D0385D1AF86A3800CB045E /* XCProjectBuildConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCProjectBuildConfig.h; sourceTree = "<group>"; };
-		23D0385E1AF86A3800CB045E /* XCProjectBuildConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCProjectBuildConfig.m; sourceTree = "<group>"; };
-		23D0385F1AF86A3800CB045E /* XCSourceFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSourceFile.h; sourceTree = "<group>"; };
-		23D038601AF86A3800CB045E /* XCSourceFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSourceFile.m; sourceTree = "<group>"; };
-		23D038611AF86A3800CB045E /* XCSourceFileDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSourceFileDefinition.h; sourceTree = "<group>"; };
-		23D038621AF86A3800CB045E /* XCSourceFileDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSourceFileDefinition.m; sourceTree = "<group>"; };
-		23D038631AF86A3800CB045E /* XCSubProjectDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSubProjectDefinition.h; sourceTree = "<group>"; };
-		23D038641AF86A3800CB045E /* XCSubProjectDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSubProjectDefinition.m; sourceTree = "<group>"; };
-		23D038651AF86A3800CB045E /* XCTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCTarget.h; sourceTree = "<group>"; };
-		23D038661AF86A3800CB045E /* XCTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTarget.m; sourceTree = "<group>"; };
-		23D038671AF86A3800CB045E /* XCXibDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCXibDefinition.h; sourceTree = "<group>"; };
-		23D038681AF86A3800CB045E /* XCXibDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCXibDefinition.m; sourceTree = "<group>"; };
 		23D0387C1AF8A19E00CB045E /* XCFrameworkPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFrameworkPath.h; sourceTree = "<group>"; };
 		23D0387D1AF8A19E00CB045E /* XCFrameworkPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFrameworkPath.m; sourceTree = "<group>"; };
 		23D0387F1AF8AE8700CB045E /* MTSharedXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSharedXcode.h; sourceTree = "<group>"; };
@@ -171,7 +179,6 @@
 		23FC5C971AF71CE4002ED770 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		23FC5C991AF71CE4002ED770 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		23FC5C9D1AF71CE4002ED770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23FC5C9E1AF71CE4002ED770 /* CrasheyePluginXcode.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = CrasheyePluginXcode.xcscheme; path = CrasheyePluginXcode.xcodeproj/xcshareddata/xcschemes/CrasheyePluginXcode.xcscheme; sourceTree = SOURCE_ROOT; };
 		23FC5CA01AF71CE4002ED770 /* CrasheyePluginXcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrasheyePluginXcode.h; sourceTree = "<group>"; };
 		23FC5CA11AF71CE4002ED770 /* CrasheyePluginXcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrasheyePluginXcode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,13 +203,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23958D861D1915F200E72C3D /* pbxproj */ = {
+			isa = PBXGroup;
+			children = (
+				23958D871D1915F200E72C3D /* Utils */,
+				23958D8A1D1915F200E72C3D /* XCAbstractDefinition.h */,
+				23958D8B1D1915F200E72C3D /* XCAbstractDefinition.m */,
+				23958D8C1D1915F200E72C3D /* XCBuildShellScript.h */,
+				23958D8D1D1915F200E72C3D /* XCBuildShellScript.m */,
+				23958D8E1D1915F200E72C3D /* XCBuildShellScriptDefinition.h */,
+				23958D8F1D1915F200E72C3D /* XCBuildShellScriptDefinition.m */,
+				23958D901D1915F200E72C3D /* XCClassDefinition.h */,
+				23958D911D1915F200E72C3D /* XCClassDefinition.m */,
+				23958D921D1915F200E72C3D /* XCFileOperationQueue.h */,
+				23958D931D1915F200E72C3D /* XCFileOperationQueue.m */,
+				23958D941D1915F200E72C3D /* XCFrameworkDefinition.h */,
+				23958D951D1915F200E72C3D /* XCFrameworkDefinition.m */,
+				23958D961D1915F200E72C3D /* XCGroup.h */,
+				23958D971D1915F200E72C3D /* XCGroup.m */,
+				23958D981D1915F200E72C3D /* XcodeEditor.h */,
+				23958D991D1915F200E72C3D /* XcodeGroupMember.h */,
+				23958D9A1D1915F200E72C3D /* XcodeMemberType.h */,
+				23958D9B1D1915F200E72C3D /* XcodeMemberType.m */,
+				23958D9C1D1915F200E72C3D /* XcodeSourceFileType.h */,
+				23958D9D1D1915F200E72C3D /* XcodeSourceFileType.m */,
+				23958D9E1D1915F200E72C3D /* XcodeSourceTreeType.h */,
+				23958D9F1D1915F200E72C3D /* XcodeSourceTreeType.m */,
+				23958DA01D1915F200E72C3D /* XCProject+SubProject.h */,
+				23958DA11D1915F200E72C3D /* XCProject+SubProject.m */,
+				23958DA21D1915F200E72C3D /* XCProject.h */,
+				23958DA31D1915F200E72C3D /* XCProject.m */,
+				23958DA41D1915F200E72C3D /* XCProjectBuildConfig.h */,
+				23958DA51D1915F200E72C3D /* XCProjectBuildConfig.m */,
+				23958DA61D1915F200E72C3D /* XCSourceFile.h */,
+				23958DA71D1915F200E72C3D /* XCSourceFile.m */,
+				23958DA81D1915F200E72C3D /* XCSourceFileDefinition.h */,
+				23958DA91D1915F200E72C3D /* XCSourceFileDefinition.m */,
+				23958DAA1D1915F200E72C3D /* XCSubProjectDefinition.h */,
+				23958DAB1D1915F200E72C3D /* XCSubProjectDefinition.m */,
+				23958DAC1D1915F200E72C3D /* XCTarget.h */,
+				23958DAD1D1915F200E72C3D /* XCTarget.m */,
+				23958DAE1D1915F200E72C3D /* XCXibDefinition.h */,
+				23958DAF1D1915F200E72C3D /* XCXibDefinition.m */,
+			);
+			path = pbxproj;
+			sourceTree = "<group>";
+		};
+		23958D871D1915F200E72C3D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				23958D881D1915F200E72C3D /* XCKeyBuilder.h */,
+				23958D891D1915F200E72C3D /* XCKeyBuilder.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		23A34F7A1AF745A6006E731F /* class */ = {
 			isa = PBXGroup;
 			children = (
+				23958D861D1915F200E72C3D /* pbxproj */,
 				23CD2D3A1AFB50D8005B55B0 /* zipzap */,
 				23CD2CAF1AFB4455005B55B0 /* Alert */,
 				23CD2CA41AFB3BA7005B55B0 /* json */,
-				23D0383D1AF86A3800CB045E /* pbxproj */,
 				23A34F7B1AF745BC006E731F /* MTProject.h */,
 				23A34F7C1AF745BC006E731F /* MTProject.m */,
 				23A34F7E1AF74604006E731F /* MTPWorkspaceManager.h */,
@@ -284,55 +346,6 @@
 			path = zipzap;
 			sourceTree = "<group>";
 		};
-		23D0383D1AF86A3800CB045E /* pbxproj */ = {
-			isa = PBXGroup;
-			children = (
-				23D038461AF86A3800CB045E /* Utils */,
-				23D038491AF86A3800CB045E /* XCAbstractDefinition.h */,
-				23D0384A1AF86A3800CB045E /* XCAbstractDefinition.m */,
-				23D0384B1AF86A3800CB045E /* XCClassDefinition.h */,
-				23D0384C1AF86A3800CB045E /* XCClassDefinition.m */,
-				23D0384D1AF86A3800CB045E /* XCFileOperationQueue.h */,
-				23D0384E1AF86A3800CB045E /* XCFileOperationQueue.m */,
-				23D0384F1AF86A3800CB045E /* XCFrameworkDefinition.h */,
-				23D038501AF86A3800CB045E /* XCFrameworkDefinition.m */,
-				23D038511AF86A3800CB045E /* XCGroup.h */,
-				23D038521AF86A3800CB045E /* XCGroup.m */,
-				23D038531AF86A3800CB045E /* XcodeEditor.h */,
-				23D038541AF86A3800CB045E /* XcodeGroupMember.h */,
-				23D038551AF86A3800CB045E /* XcodeMemberType.h */,
-				23D038561AF86A3800CB045E /* XcodeMemberType.m */,
-				23D038571AF86A3800CB045E /* XcodeSourceFileType.h */,
-				23D038581AF86A3800CB045E /* XcodeSourceFileType.m */,
-				23D038591AF86A3800CB045E /* XCProject+SubProject.h */,
-				23D0385A1AF86A3800CB045E /* XCProject+SubProject.m */,
-				23D0385B1AF86A3800CB045E /* XCProject.h */,
-				23D0385C1AF86A3800CB045E /* XCProject.m */,
-				23D0385D1AF86A3800CB045E /* XCProjectBuildConfig.h */,
-				23D0385E1AF86A3800CB045E /* XCProjectBuildConfig.m */,
-				23D0385F1AF86A3800CB045E /* XCSourceFile.h */,
-				23D038601AF86A3800CB045E /* XCSourceFile.m */,
-				23D038611AF86A3800CB045E /* XCSourceFileDefinition.h */,
-				23D038621AF86A3800CB045E /* XCSourceFileDefinition.m */,
-				23D038631AF86A3800CB045E /* XCSubProjectDefinition.h */,
-				23D038641AF86A3800CB045E /* XCSubProjectDefinition.m */,
-				23D038651AF86A3800CB045E /* XCTarget.h */,
-				23D038661AF86A3800CB045E /* XCTarget.m */,
-				23D038671AF86A3800CB045E /* XCXibDefinition.h */,
-				23D038681AF86A3800CB045E /* XCXibDefinition.m */,
-			);
-			path = pbxproj;
-			sourceTree = "<group>";
-		};
-		23D038461AF86A3800CB045E /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				23D038471AF86A3800CB045E /* XCKeyBuilder.h */,
-				23D038481AF86A3800CB045E /* XCKeyBuilder.m */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		23FC5C8B1AF71CE4002ED770 = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				23FC5C9D1AF71CE4002ED770 /* Info.plist */,
-				23FC5C9E1AF71CE4002ED770 /* CrasheyePluginXcode.xcscheme */,
 				23CD2D391AFB5066005B55B0 /* CrasheyePluginXcodePch.pch */,
 			);
 			name = "Supporting Files";
@@ -449,7 +461,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23FC5C9F1AF71CE4002ED770 /* CrasheyePluginXcode.xcscheme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,49 +471,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23958DBC1D1915F200E72C3D /* XCProject.m in Sources */,
+				23958DB01D1915F200E72C3D /* XCKeyBuilder.m in Sources */,
 				23CD2D711AFB50D8005B55B0 /* ZZInflateInputStream.m in Sources */,
-				23D038781AF86A3800CB045E /* XCSourceFileDefinition.m in Sources */,
 				23A34F7D1AF745BC006E731F /* MTProject.m in Sources */,
-				23D038721AF86A3800CB045E /* XcodeMemberType.m in Sources */,
-				23D0387B1AF86A3800CB045E /* XCXibDefinition.m in Sources */,
-				23D038731AF86A3800CB045E /* XcodeSourceFileType.m in Sources */,
+				23958DB51D1915F200E72C3D /* XCFileOperationQueue.m in Sources */,
+				23958DB61D1915F200E72C3D /* XCFrameworkDefinition.m in Sources */,
+				23958DBB1D1915F200E72C3D /* XCProject+SubProject.m in Sources */,
+				23958DBD1D1915F200E72C3D /* XCProjectBuildConfig.m in Sources */,
 				23CD2D701AFB50D8005B55B0 /* ZZFileChannelOutput.m in Sources */,
 				23CD2D731AFB50D8005B55B0 /* ZZNewArchiveEntryWriter.mm in Sources */,
-				23D038701AF86A3800CB045E /* XCFrameworkDefinition.m in Sources */,
+				23958DB31D1915F200E72C3D /* XCBuildShellScriptDefinition.m in Sources */,
 				23D0387E1AF8A19E00CB045E /* XCFrameworkPath.m in Sources */,
-				23D0386C1AF86A3800CB045E /* XCKeyBuilder.m in Sources */,
+				23958DB81D1915F200E72C3D /* XcodeMemberType.m in Sources */,
+				23958DBA1D1915F200E72C3D /* XcodeSourceTreeType.m in Sources */,
 				23CD2D681AFB50D8005B55B0 /* ZZArchive.mm in Sources */,
-				23D038771AF86A3800CB045E /* XCSourceFile.m in Sources */,
-				23D038761AF86A3800CB045E /* XCProjectBuildConfig.m in Sources */,
-				23D038741AF86A3800CB045E /* XCProject+SubProject.m in Sources */,
+				23958DB41D1915F200E72C3D /* XCClassDefinition.m in Sources */,
+				23958DB21D1915F200E72C3D /* XCBuildShellScript.m in Sources */,
 				23CD2D771AFB50D8005B55B0 /* ZZStandardDecryptInputStream.mm in Sources */,
-				23D0387A1AF86A3800CB045E /* XCTarget.m in Sources */,
-				23D0386F1AF86A3800CB045E /* XCFileOperationQueue.m in Sources */,
-				23D038791AF86A3800CB045E /* XCSubProjectDefinition.m in Sources */,
 				23CD2D741AFB50D8005B55B0 /* ZZOldArchiveEntry.mm in Sources */,
 				23A34F831AF7469A006E731F /* MTCodeConsole.m in Sources */,
-				23D0386D1AF86A3800CB045E /* XCAbstractDefinition.m in Sources */,
+				23958DC01D1915F200E72C3D /* XCSubProjectDefinition.m in Sources */,
 				23CD2D6B1AFB50D8005B55B0 /* ZZDataChannel.m in Sources */,
 				23F5C0041AF9FB460094E7BF /* NSArray+NSArrayExtension.m in Sources */,
+				23958DBF1D1915F200E72C3D /* XCSourceFileDefinition.m in Sources */,
 				23A34F801AF74604006E731F /* MTPWorkspaceManager.m in Sources */,
 				23CD2CB21AFB4455005B55B0 /* NSAlert+BlockMethods.m in Sources */,
 				23FC5CA21AF71CE4002ED770 /* CrasheyePluginXcode.m in Sources */,
 				23CD2D6C1AFB50D8005B55B0 /* ZZDataChannelOutput.m in Sources */,
 				23CD2D6A1AFB50D8005B55B0 /* ZZConstants.m in Sources */,
 				23CD2D6D1AFB50D8005B55B0 /* ZZDeflateOutputStream.m in Sources */,
-				23D038711AF86A3800CB045E /* XCGroup.m in Sources */,
 				23D038811AF8AE8700CB045E /* MTSharedXcode.m in Sources */,
+				23958DB11D1915F200E72C3D /* XCAbstractDefinition.m in Sources */,
 				23CD2D761AFB50D8005B55B0 /* ZZStandardCryptoEngine.cpp in Sources */,
-				23D038751AF86A3800CB045E /* XCProject.m in Sources */,
-				23D0386E1AF86A3800CB045E /* XCClassDefinition.m in Sources */,
 				23CD2D721AFB50D8005B55B0 /* ZZNewArchiveEntry.mm in Sources */,
+				23958DC11D1915F200E72C3D /* XCTarget.m in Sources */,
 				23CD2D671AFB50D8005B55B0 /* ZZAESDecryptInputStream.mm in Sources */,
+				23958DBE1D1915F200E72C3D /* XCSourceFile.m in Sources */,
+				23958DB71D1915F200E72C3D /* XCGroup.m in Sources */,
 				23CD2CAA1AFB3BA7005B55B0 /* JSONKit.m in Sources */,
 				23CD2D781AFB50D8005B55B0 /* ZZStoreOutputStream.m in Sources */,
 				23CD2D691AFB50D8005B55B0 /* ZZArchiveEntry.m in Sources */,
 				23CD2D6E1AFB50D8005B55B0 /* ZZError.m in Sources */,
 				23CD2D751AFB50D8005B55B0 /* ZZOldArchiveEntryWriter.mm in Sources */,
 				23CD2D6F1AFB50D8005B55B0 /* ZZFileChannel.m in Sources */,
+				23958DB91D1915F200E72C3D /* XcodeSourceFileType.m in Sources */,
+				23958DC21D1915F200E72C3D /* XCXibDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +602,6 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/GangWang/Downloads/FFXcodeProjectManager-master/FFXcodeProjectManager",
 					"$(PROJECT_DIR)/CrasheyePluginXcode/class",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
@@ -610,7 +623,6 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/GangWang/Downloads/FFXcodeProjectManager-master/FFXcodeProjectManager",
 					"$(PROJECT_DIR)/CrasheyePluginXcode/class",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",

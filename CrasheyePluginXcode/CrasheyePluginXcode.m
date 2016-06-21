@@ -396,7 +396,7 @@ static CrasheyePluginXcode *sharedPlugin;
                                      informativeTextWithFormat: info];
                 
                 [alert compatibleBeginSheetModalForWindow: [NSApp keyWindow] completionHandler: ^(NSInteger returnCode){
-                    if (returnCode == NSAlertDefaultReturn) {
+                    if (returnCode == NSAlertDefaultReturn ) {
                         [self downloadCrashSDK:^{
                             [self configProjectBuildSetting];
 ////
@@ -447,8 +447,8 @@ static CrasheyePluginXcode *sharedPlugin;
     [self configOtherLinkerFlags:project];
     [self.xcodeConsole appendText:@"    1: Repair Project Build Config                              √\n"];
     
-    [self addLibzToProject:project];
-    [self.xcodeConsole appendText:@"    2: Repair libz To Project                                   √\n"];
+    [self addLibzAndcjiajiaToProject:project];
+    [self.xcodeConsole appendText:@"    2: Repair libz & libc++ To Project                          √\n"];
     
     [self addCrashFileToProject:project];
     [self.xcodeConsole appendText:@"    3: Repair CrasheyeFiles To Project                          √\n"];
@@ -458,7 +458,7 @@ static CrasheyePluginXcode *sharedPlugin;
     [self.xcodeConsole appendText:@"Check & Repair Project Config Finish                            √\n"];
 }
 
-- (void) addLibzToProject:(XCProject *) project
+- (void) addLibzAndcjiajiaToProject:(XCProject *) project
 {
     XCGroup* group = [project groupWithPathFromRoot:nil];
     XCGroup * frameworksGroup = [group addGroupWithPath:@"Frameworks"];
@@ -469,8 +469,15 @@ static CrasheyePluginXcode *sharedPlugin;
     }
 
     
+    NSLog(@"======= libz:%@:", [XCFrameworkPath libzDylibPath]);
+    
     XCFrameworkDefinition* frameworkDefinition = [[XCFrameworkDefinition alloc] initWithFilePath:[XCFrameworkPath libzDylibPath] copyToDestination:NO];
-    [frameworksGroup addFramework:frameworkDefinition];
+    
+    [frameworksGroup addFramework:frameworkDefinition toTargets:[project targets]];
+    
+    
+    XCFrameworkDefinition* frameworkcPlusplus = [[XCFrameworkDefinition alloc] initWithFilePath:[XCFrameworkPath libcplusplusDylibPath] copyToDestination:NO];
+    [frameworksGroup addFramework:frameworkcPlusplus toTargets:[project targets]];
 }
 
 - (void) addCrashFileToProject:(XCProject *) project
@@ -717,6 +724,7 @@ static CrasheyePluginXcode *sharedPlugin;
                     }
 
                     
+                    // TODO... 规则可丰富
                     if ([linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary *)launchOptions"] ||
                         [linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary*)launchOptions"])
                     {
@@ -760,7 +768,9 @@ static CrasheyePluginXcode *sharedPlugin;
                         if ( !document )
                             return;
                         
-                        [[document textStorage] beginEditing];
+                        [[
+                          document
+                          textStorage] beginEditing];
                         
                         //        [textView setString:@"123"];
                         
