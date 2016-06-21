@@ -8,8 +8,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 //
 ////////////////////////////////////////////////////////////////////////////////
-#import <Foundation/Foundation.h>
 
+#import <Foundation/Foundation.h>
 
 @class XCProject;
 
@@ -22,10 +22,10 @@
     NSMutableDictionary* _buildSettings;
     NSMutableDictionary* _xcconfigSettings;
 }
-
+@property(nonatomic, strong, readonly) NSString* key;
 @property(nonatomic, readonly) NSDictionary* specifiedBuildSettings;
 
-+ (NSDictionary*)buildConfigurationsFromArray:(NSArray*)array inProject:(XCProject*)project;
++ (NSDictionary<NSString*,NSString*>*)buildConfigurationsFromArray:(NSArray<XCProjectBuildConfig*>*)array inProject:(XCProject*)project;
 
 - (instancetype)initWithProject:(XCProject*)project key:(NSString*)key;
 
@@ -34,6 +34,8 @@
 - (void)addOrReplaceSetting:(id <NSCopying>)setting forKey:(NSString*)key;
 
 - (id <NSCopying>)valueForKey:(NSString*)key;
+
+-(void)removeSettingByKey:(NSString*)key;
 
 + (NSString*)duplicatedBuildConfigurationListWithKey:(NSString*)buildConfigurationListKey inProject:(XCProject*)project
     withBuildConfigurationVisitor:(void (^)(NSMutableDictionary*))buildConfigurationVisitor;

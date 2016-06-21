@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XcodeGroupMember.h"
+#import "XcodeSourceFileType.h"
 
 @class XCProject;
 @class XCClassDefinition;
@@ -21,10 +22,11 @@
 @class XCFrameworkDefinition;
 @class XCSourceFileDefinition;
 @class XCSubProjectDefinition;
+@class XCTarget;
 
 
 /**
-* Represents a group container in an Xcode project. A group can contain members of type `XCSourceFile` or other
+* Represents a _group container in an Xcode project. A group can contain members of type `XCSourceFile` or other
 * groups.
 */
 @interface XCGroup : NSObject <XcodeGroupMember>
@@ -40,7 +42,7 @@
     NSMutableArray* _children;
     NSMutableArray* _members;
 
-    XCFileOperationQueue* _fileOperationQueue; // weak
+    XCFileOperationQueue* _fileOperationQueue;
     XCProject* _project;
 
 }
@@ -68,14 +70,14 @@
 /**
  * An array containing the groups members as `XcodeGroupMember` types.
 */
-@property(nonatomic, strong, readonly) NSMutableArray* children;
+@property(nonatomic, strong, readonly) NSMutableArray<id<XcodeGroupMember>>* children;
 
 
 #pragma mark Initializers
 
-+ (XCGroup*)groupWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray*)children;
++ (XCGroup*)groupWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray<id<XcodeGroupMember>>*)children;
 
-- (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray*)children;
+- (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray<id<XcodeGroupMember>>*)children;
 
 #pragma mark Parent group
 
@@ -87,38 +89,62 @@
 
 - (BOOL)isRootGroup;
 
+- (BOOL)isEmpty;
+
 #pragma mark Adding children
 /**
- * Adds a class to the group, as specified by the ClassDefinition. If the group already contains a class by the same
+ * Adds a class to the _group, as specified by the ClassDefinition. If the _group already contains a class by the same
  * name, the contents will be updated.
 */
 - (void)addClass:(XCClassDefinition*)classDefinition;
 
 /**
- * Adds a class to the group, making it a member of the specified [targets](XCTarget).
+ * Adds a class to the _group, making it a member of the specified [targets](XCTarget).
 */
-- (void)addClass:(XCClassDefinition*)classDefinition toTargets:(NSArray*)targets;
+- (void)addClass:(XCClassDefinition*)classDefinition toTargets:(NSArray<XCTarget*>*)targets;
 
 /**
-* Adds a framework to the group. If the group already contains the framework, the contents will be updated if the
+ * Removes a class from the _group
+*/
+- (void)removeClass:(XCClassDefinition*)classDefinition fromTargets:(NSArray*)targets;
+
+/** 
+ * Removes a header from the _group
+*/
+- (void)removeHeader:(XCClassDefinition*)classDefinition;
+
+/**
+* Adds a framework to the _group. If the _group already contains the framework, the contents will be updated if the
 * framework definition's copyToDestination flag is yes, otherwise it will be ignored.
 */
 - (void)addFramework:(XCFrameworkDefinition*)frameworkDefinition;
 
 /**
-* Adds a group with a path relative to this group.
+* Removes a framework from the _group
+*/
+- (void) removeFramework:(XCFrameworkDefinition *)frameworkDefinition fromTargets:(NSArray *)targets;
+
+/**
+* Adds a _group with a path relative to this _group.
 */
 - (XCGroup*)addGroupWithPath:(NSString*)path;
+
+/**
+ * Adds a _group with an alias to this _group.
+ */
+- (XCGroup*)addGroupWithAlias:(NSString *)alias;
 
 /**
 * Adds a reference to a folder
 */
 - (void)addFolderReference:(NSString*)sourceFolder;
 
+- (void)addFileReference:(NSString *)filePath withType:(XcodeSourceFileType)type;
+
 /**
-* Adds a framework to the group, making it a member of the specified targets.
+* Adds a framework to the _group, making it a member of the specified targets.
 */
-- (void)addFramework:(XCFrameworkDefinition*)framework toTargets:(NSArray*)targets;
+- (XCSourceFile*)addFramework:(XCFrameworkDefinition*)framework toTargets:(NSArray<XCTarget*>*)targets;
 
 /**
 * Adds a source file of arbitrary type - image resource, header, etc.
@@ -127,17 +153,17 @@
 
 
 /**
- * Adds a xib file to the group. If the group already contains a class by the same name, the contents will be updated.
+ * Adds a xib file to the _group. If the _group already contains a class by the same name, the contents will be updated.
 */
 - (void)addXib:(XCXibDefinition*)xibDefinition;
 
 /**
- * Adds a xib to the group, making it a member of the specified [targets](XCTarget).
+ * Adds a xib to the _group, making it a member of the specified [targets](XCTarget).
 */
-- (void)addXib:(XCXibDefinition*)xibDefinition toTargets:(NSArray*)targets;
+- (void)addXib:(XCXibDefinition*)xibDefinition toTargets:(NSArray<XCTarget*>*)targets;
 
 /**
- * Adds a sub-project to the group. If the group already contains a sub-project by the same name, the contents will be
+ * Adds a sub-project to the _group. If the _group already contains a sub-project by the same name, the contents will be
  * updated.
  * Returns boolean success/fail; if method fails, caller should assume that project file is corrupt (or file format has
  * changed).
@@ -145,28 +171,30 @@
 - (void)addSubProject:(XCSubProjectDefinition*)projectDefinition;
 
 /**
-* Adds a sub-project to the group, making it a member of the specified [targets](XCTarget).
+* Adds a sub-project to the _group, making it a member of the specified [targets](XCTarget).
 */
-- (void)addSubProject:(XCSubProjectDefinition*)projectDefinition toTargets:(NSArray*)targets;
+- (void)addSubProject:(XCSubProjectDefinition*)projectDefinition toTargets:(NSArray<XCTarget*>*)targets;
 
 - (void)removeSubProject:(XCSubProjectDefinition*)projectDefinition;
 
-- (void)removeSubProject:(XCSubProjectDefinition*)projectDefinition fromTargets:(NSArray*)targets;
+- (void)removeSubProject:(XCSubProjectDefinition*)projectDefinition fromTargets:(NSArray<XCTarget*>*)targets;
 
 
 #pragma mark Locating children
 /**
  * Instances of `XCSourceFile` and `XCGroup` returned as the type `XcodeGroupMember`.
 */
-- (NSArray*)members;
+- (NSArray<id<XcodeGroupMember>>*)members;
 
 /**
-* Instances of `XCSourceFile` from this group and any child groups.
+* Keys of members from this group and any child groups.
 */
-- (NSArray*)recursiveMembers;
+- (NSArray<NSString*>*)recursiveMembers;
 
-
-- (NSArray*)buildFileKeys;
+/**
+ * Keys of members from this group
+ */
+- (NSArray<NSString*>*)buildFileKeys;
 
 /**
  * Returns the child with the specified key, or nil.
@@ -178,7 +206,9 @@
 */
 - (id <XcodeGroupMember>)memberWithDisplayName:(NSString*)name;
 
-
-- (void)addBuildPhaseFileKey:(NSString*)key forType:(XcodeMemberType)memberType;
+/**
+ *  Remove the member with the specified key
+ */
+- (void)removeMemberWithKey:(NSString*)key;
 
 @end

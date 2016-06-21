@@ -24,7 +24,14 @@ static const NSString* SDK_PATH = @"/Applications/Xcode.app/Contents/Developer/P
 
 + (NSString*)libzDylibPath
 {
-    return [SDK_PATH stringByAppendingPathComponent:@"/usr/lib/libz.dylib"];
+//    return @"/usr/lib/libz.dylib";
+    return [SDK_PATH stringByAppendingPathComponent:@"/usr/lib/libz.tbd"];
+}
+
++ (NSString*)libcplusplusDylibPath
+{
+//    return @"/usr/lib/libc++.dylib";
+    return [SDK_PATH stringByAppendingPathComponent:@"/usr/lib/libc++.tbd"];
 }
 
 @end

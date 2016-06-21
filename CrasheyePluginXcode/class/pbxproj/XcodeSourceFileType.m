@@ -23,6 +23,7 @@ static NSDictionary* NSDictionaryWithXCFileReferenceTypes()
             @"sourcecode.c.h"        : @(SourceCodeHeader),
             @"sourcecode.c.objc"     : @(SourceCodeObjC),
             @"wrapper.framework"     : @(Framework),
+            @"sourcecode.text-based-dylib-definition"              : @(TBD),
             @"text.plist.strings"    : @(PropertyList),
             @"sourcecode.cpp.objcpp" : @(SourceCodeObjCPlusPlus),
             @"sourcecode.cpp.cpp"    : @(SourceCodeCPlusPlus),
@@ -33,7 +34,18 @@ static NSDictionary* NSDictionaryWithXCFileReferenceTypes()
             @"text.html"             : @(HTML),
             @"text"                  : @(TEXT),
             @"wrapper.pb-project"    : @(XcodeProject),
-            @"folder"                : @(Folder)
+            @"folder"                : @(Folder),
+            @"folder.assetcatalog"   : @(AssetCatalog),
+            @"sourcecode.swift"      : @(SourceCodeSwift),
+            @"wrapper.application"   : @(Application),
+            @"file.playground"       : @(Playground),
+            @"text.script.sh"        : @(ShellScript),
+            @"net.daringfireball.markdown" : @(Markdown),
+            @"text.plist.xml"        : @(XMLPropertyList),
+            @"file.storyboard"       : @(Storyboard),
+            @"text.xcconfig"         : @(XCConfig),
+            @"wrapper.xcconfig"         : @(XCConfig),
+            @"wrapper.xcdatamodel": @(XCDataModel)
         };
     });
 
@@ -77,6 +89,14 @@ XcodeSourceFileType XCSourceFileTypeFromFileName(NSString* fileName)
     if ([fileName hasSuffix:@".cpp"])
     {
         return SourceCodeCPlusPlus;
+    }
+    if ([fileName hasSuffix:@".swift"])
+    {
+        return SourceCodeSwift;
+    }
+    if ([fileName hasSuffix:@".xcdatamodel"])
+    {
+        return XCDataModel;
     }
     return FileTypeNil;
 }

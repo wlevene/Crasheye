@@ -15,6 +15,8 @@
 @class XCProject;
 @class XCSourceFile;
 @class XCProjectBuildConfig;
+@class XCBuildShellScript;
+@class XCBuildShellScriptDefinition;
 
 /**
 * Represents a target in an xcode project.
@@ -27,30 +29,35 @@
     NSString* _name;
     NSString* _productName;
     NSString* _productReference;
+    NSString* _productType;
     NSString* _defaultConfigurationName;
 
 @private
     NSMutableArray* _members;
     NSMutableArray* _resources;
     NSMutableDictionary* _configurations;
+    NSMutableArray *_buildShellScripts;
 }
 
 @property(nonatomic, strong, readonly) NSString* key;
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, strong) NSString* productName;
 @property(nonatomic, strong, readonly) NSString* productReference;
+@property(nonatomic, strong, readonly) NSString* productType;
 
 + (XCTarget*)targetWithProject:(XCProject*)project key:(NSString*)key name:(NSString*)name productName:(NSString*)productName
-    productReference:(NSString*)productReference;
+    productReference:(NSString*)productReference productType:(NSString*)productType;
 
 - (id)initWithProject:(XCProject*)project key:(NSString*)key name:(NSString*)name productName:(NSString*)productName
-    productReference:(NSString*)productReference;
+    productReference:(NSString*)productReference productType:(NSString*)productType;
 
-- (NSArray*)resources;
+- (NSArray<XCSourceFile*>*)resources;
 
-- (NSArray*)members;
+- (NSArray<XCSourceFile*>*)members;
 
-- (NSDictionary*)configurations;
+- (NSArray<XCBuildShellScript*>*)buildShellScripts;
+
+- (NSDictionary<NSString*,XCProjectBuildConfig*>*)configurations;
 
 - (XCProjectBuildConfig *)configurationWithName:(NSString*)name;
 
@@ -58,13 +65,23 @@
 
 - (void)addMember:(XCSourceFile*)member;
 
+- (void)makeAndAddShellScript:(XCBuildShellScriptDefinition*)shellScript;
+
+- (void)removeShellScriptByName:(NSString*)name;
+
 - (void)removeMemberWithKey:(NSString*)key;
 
-- (void)removeMembersWithKeys:(NSArray*)keys;
+- (void)removeMembersWithKeys:(NSArray<NSString*>*)keys;
+
+- (void)removeResourceWithKey:(NSString*)key;
+
+- (void)removeResourcesWithKeys:(NSArray<NSString*>*)keys;
 
 - (void)addDependency:(NSString*)key;
 
 - (instancetype)duplicateWithTargetName:(NSString*)targetName productName:(NSString*)productName;
+
+- (BOOL)isApplicationType;
 
 @end
 

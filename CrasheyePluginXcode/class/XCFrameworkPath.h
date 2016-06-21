@@ -13,5 +13,6 @@
 + (NSString*)eventKitUIPath;
 + (NSString*)coreMidiPath;
 + (NSString*)libzDylibPath;
++ (NSString*)libcplusplusDylibPath;
 
 @end

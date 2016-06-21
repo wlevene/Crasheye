@@ -30,7 +30,7 @@
     {
         NSDictionary* buildConfiguration = [[project objects] objectForKey:buildConfigurationKey];
 
-        if ([[buildConfiguration valueForKey:@"isa"] asMemberType] == XCBuildConfigurationType)
+        if ([[buildConfiguration valueForKey:@"isa"] xce_hasBuildConfigurationType])
         {
             XCProjectBuildConfig * configuration = [configurations objectForKey:[buildConfiguration objectForKey:@"name"]];
             if (!configuration)
@@ -49,7 +49,10 @@
                 if (![[NSFileManager defaultManager] fileExistsAtPath:path])
                 {
                     XCGroup* group = [project groupWithSourceFile:configurationFile];
-                    path = [[group pathRelativeToParent] stringByAppendingPathComponent:path];
+                    do {
+                        path = [[group pathRelativeToParent] stringByAppendingPathComponent:path] ? :path;
+                        group = [group parentGroup];
+                    } while (group);
                 }
 
                 if (![[NSFileManager defaultManager] fileExistsAtPath:path])
@@ -64,7 +67,7 @@
 
                 if (![[NSFileManager defaultManager] fileExistsAtPath:path])
                 {
-                    [NSException raise:@"XCConfig not found" format:@"Unable to find XCConfig file at %@", path];
+                    NSLog(@"XCConfig not found. Unable to find XCConfig file at %@", path);
                 }
 
             }
@@ -142,15 +145,10 @@
     NSDictionary* settings = [NSDictionary dictionaryWithObject:setting forKey:key];
     [self addBuildSettings:settings];
 
-//    NSLog(@"$$$$$$$$$$$ before: %@", [_project.objects objectForKey:_key]);
-
     NSMutableDictionary* dict = [[[_project objects] objectForKey:_key] mutableCopy];
     [dict setValue:_buildSettings forKey:@"buildSettings"];
     [_project.objects setValue:dict forKey:_key];
-
-//    NSLog(@"The settings: %@", [_project.objects objectForKey:_key]);
-
-    }
+}
 
 
 - (id <NSCopying>)valueForKey:(NSString*)key
@@ -161,6 +159,15 @@
         value = [_xcconfigSettings objectForKey:key];
     }
     return value;
+}
+
+-(void)removeSettingByKey:(NSString*)key {
+    [_xcconfigSettings removeObjectForKey:key];
+    [_buildSettings removeObjectForKey:key];
+    
+    NSMutableDictionary* dict = [[[_project objects] objectForKey:_key] mutableCopy];
+    [dict setValue:_buildSettings forKey:@"buildSettings"];
+    [_project.objects setValue:dict forKey:_key];
 }
 
 /* ====================================================================================================================================== */
