@@ -337,6 +337,16 @@ static CrasheyePluginXcode *sharedPlugin;
 
 }
 
+-(void) installPot
+{
+    NSURL* docsetURL = [NSURL URLWithString:@"http://reops.crasheye.cn/api/sdk/plugin/ios/install"];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:docsetURL]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse* response, NSData* xarData, NSError* connectionError) {
+                           }
+     ];
+}
+
 
 - (void) doInstall {
     
@@ -346,12 +356,7 @@ static CrasheyePluginXcode *sharedPlugin;
 //    NSLog(@"Project File:%@", self.mProject.projectFile);
 //    NSLog(@"Installed Crasheye: %d",  [self.mProject hasCrasheyefile]);
     
-//    NSURL* docsetURL = [NSURL URLWithString:@"http://reops.crasheye.cn/api/sdk/plugin/ios/install"];
-//    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:docsetURL]
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse* response, NSData* xarData, NSError* connectionError) {
-//                           }
-//     ];
+    [self installPot];
     
     self.mProject = [MTProject projectForKeyWindow];
     self.xcodeConsole = [MTCodeConsole consoleForKeyWindow];
