@@ -339,6 +339,7 @@ static CrasheyePluginXcode *sharedPlugin;
 
 - (void) doInstall {
     
+ 
 //    NSLog(@"ProjectName:%@", self.mProject.projectName);
 //    NSLog(@"Workspace:%@", self.mProject.workspacePath);
 //    NSLog(@"Project File:%@", self.mProject.projectFile);
@@ -358,6 +359,7 @@ static CrasheyePluginXcode *sharedPlugin;
     {
         return;
     }
+    
     
     NSString * projectFile = self.mProject.projectFile;
     
@@ -455,8 +457,76 @@ static CrasheyePluginXcode *sharedPlugin;
     
     
     [project save];
+    
+    [self addTransportSecurityInPlistFile];
+    [self.xcodeConsole appendText:@"    4: Add TransportSecurity for rasheye.cn                     √\n"];
     [self.xcodeConsole appendText:@"Check & Repair Project Config Finish                            √\n"];
 }
+
+
+- (void) addTransportSecurityInPlistFile
+{
+    
+    XCProject* project = [[XCProject alloc] initWithFilePath:self.mProject.projectFileDir];
+    
+    NSArray * allfiles = [project files];
+    
+    NSString * plistFile = nil;
+    for (XCSourceFile * file in allfiles)
+    {
+        NSString * fileName = [file name];
+//        NSLog(@"Crasheye fileName:%@", fileName);
+        
+        if (fileName == nil ||
+            [fileName length] <=0)
+        {
+            continue;
+        }
+        
+        
+        NSString * fullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
+        
+        if ([fullPath containsString:@"UITests"]) {
+            continue;
+        }
+        
+        if (fileName != nil &&
+            [fileName isEqualToString:@"Info.plist"])
+        {
+            plistFile = fullPath;
+            NSLog(@"Crasheye xxx fileName:%@", fullPath);
+            break;
+        }
+        
+        
+    }
+    NSString *filePath = plistFile;
+    NSMutableDictionary *plistdict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    
+    NSMutableDictionary * NSAppTransportSecurity = [plistdict objectForKey:@"NSAppTransportSecurity"];
+    if (NSAppTransportSecurity == nil) {
+        NSAppTransportSecurity = [[NSMutableDictionary alloc] init];
+    }
+    
+    
+    NSMutableDictionary * NSExceptionDomains = [NSAppTransportSecurity objectForKey:@"NSExceptionDomains"];
+    if (NSExceptionDomains == nil) {
+        NSExceptionDomains = [[NSMutableDictionary alloc] init];
+    }
+    
+    
+    NSDictionary * crasheyDomain = @{@"NSExceptionAllowsInsecureHTTPLoads" : @YES,
+                                            @"NSIncludesSubdomains": @YES};
+    
+    [NSExceptionDomains setObject:crasheyDomain forKey:@"crasheye.cn"];
+    [NSAppTransportSecurity setObject:NSExceptionDomains forKey:@"NSExceptionDomains"];
+    [plistdict setObject:NSAppTransportSecurity forKey:@"NSAppTransportSecurity"];
+    
+    
+    [plistdict writeToFile:filePath atomically:YES];
+    
+}
+
 
 - (void) addLibzAndcjiajiaToProject:(XCProject *) project
 {
