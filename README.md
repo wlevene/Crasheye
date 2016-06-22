@@ -3,7 +3,7 @@
 
 
 ## 下载
-* __CrasheyeXCodePlugin__         传送门:[CrasheyeXCodePlugin](https://raw.githubusercontent.com/GangWang/Crasheye/master/XCodePlugin/CrasheyePluginXcode.xcplugin.zip)
+* __CrasheyeXCodePlugin__         传送门:[CrasheyeXCodePlugin](https://github.com/GangWang/Crasheye)
 * __Crasheye__ 各平台 __SDK__ 下载，传送门:[http://www.crasheye.cn/sdk](http://www.crasheye.cn/sdk)
 
 
@@ -48,7 +48,6 @@
 ## 注意事项
 
 >   在使用此插件之前，如果工程中已手工接入过Crasheye请，先删除Crasheye.h & libCrasheye.a 两个文件
-
 
 ---
 * 更多内容请访问:[http://www.crasheye.cn](http://www.crasheye.cn)
