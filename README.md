@@ -10,7 +10,7 @@
 ## 安装
 
 * 下载此工程点击运行后，重启xcode
-* 为了支持不同的Xcode，例如Xcode 5.0.2, Xcode 5.1.1等，需要设置Info.plist文件的DVTPlugInCompatibilityUUIDs选项，在其中加入不同的Xcode的UUID。查看Xcode UUID的方法：
+* 为了支持不同的Xcode，需要设置Info.plist文件的DVTPlugInCompatibilityUUIDs选项，在其中加入不同的Xcode的UUID。查看Xcode UUID的方法：
 
 
 >   defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
