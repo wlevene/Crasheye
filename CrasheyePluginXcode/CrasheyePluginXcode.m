@@ -544,8 +544,6 @@ static CrasheyePluginXcode *sharedPlugin;
     }
 
     
-    NSLog(@"======= libz:%@:", [XCFrameworkPath libzDylibPath]);
-    
     XCFrameworkDefinition* frameworkDefinition = [[XCFrameworkDefinition alloc] initWithFilePath:[XCFrameworkPath libzDylibPath] copyToDestination:NO];
     
     [frameworksGroup addFramework:frameworkDefinition toTargets:[project targets]];
@@ -756,19 +754,9 @@ static CrasheyePluginXcode *sharedPlugin;
                 [file type] == SourceCodeObjCPlusPlus)
             {
                 headFullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
-                NSLog(@"%@", headFullPath);
+
                 
-                NSError * err = nil;
-                NSString * hFileString = [NSString stringWithContentsOfFile:headFullPath
-                                                                   encoding:NSUTF8StringEncoding
-                                                                      error:&err];
-                if (err)
-                {
-                    NSLog(@"err:%@", err);
-                    continue;
-                }
-                
-                [self addCrasheyeCode:headFullPath];
+                [self openMainCodeFile:headFullPath];
                 
                 return;
             }
@@ -776,8 +764,18 @@ static CrasheyePluginXcode *sharedPlugin;
     }
 }
 
+- (void) openMainCodeFile:(NSString *) filePath
+{
+    id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
+    if ([appDelegate application:NSApp openFile:filePath])
+    {
+        [self performSelector:@selector(addCrasheyeCode:) withObject:filePath afterDelay:1];
+    }
+}
+
 - (void) addCrasheyeCode:(NSString *) filePath
 {
+    
     NSError * err = nil;
     NSString * fileContent = [NSString stringWithContentsOfFile:filePath
                                                        encoding:NSUTF8StringEncoding
@@ -787,37 +785,37 @@ static CrasheyePluginXcode *sharedPlugin;
         NSLog(@"err:%@", err);
         return;
     }
-    
+
     
     if ( !fileContent ||
         [fileContent length] <= 0 )
         return;
     
     //    NSArray * codesLineArray = [fileContent componentsSeparatedByString:@"\n"];
-    
-    
-    NSString * regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
-                                                            pathForResource:@"findmain"
-                                                            ofType:@"reg"]
-                                                  encoding:NSUTF8StringEncoding error:&err];
-    
-    
-    NSLog(@"Crasheye  Add Code : %@",[fileContent stringByMatching:regStr]);
-    NSRange entryFunRange = [fileContent rangeOfRegex:regStr];
-    
-    
-    regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
-                                                 pathForResource:@"findfirstimport"
-                                                 ofType:@"reg"]
-                                       encoding:NSUTF8StringEncoding error:&err];
-    
-    NSRange firstImportRange = [fileContent rangeOfRegex:regStr];
-    
-    NSString * addHeaderCode = @"\n#import \"Crasheye.h\"";
-    
     id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
     if ([appDelegate application:NSApp openFile:filePath])
     {
+        
+        NSString * regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
+                                                                pathForResource:@"findmain"
+                                                                ofType:@"reg"]
+                                                      encoding:NSUTF8StringEncoding error:&err];
+        
+        
+        NSLog(@"Crasheye  Add Code : %@",[fileContent stringByMatching:regStr]);
+        NSRange entryFunRange = [fileContent rangeOfRegex:regStr];
+        
+        
+        regStr = [NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]]
+                                                     pathForResource:@"findfirstimport"
+                                                     ofType:@"reg"]
+                                           encoding:NSUTF8StringEncoding error:&err];
+        
+        NSRange firstImportRange = [fileContent rangeOfRegex:regStr];
+        
+        NSString * addHeaderCode = @"\n#import \"Crasheye.h\"\n";
+    
+    
         NSTextView * textView = [MTSharedXcode textView];
         if ( textView )
         {
@@ -827,16 +825,13 @@ static CrasheyePluginXcode *sharedPlugin;
             
             [[document textStorage] beginEditing];
             
-            
-            
-            
             if (entryFunRange.length == 0 &&
                 entryFunRange.location >= LONG_MAX) {
                 
             }else {
                 if (![self isAddedImportCrasheyeInitCode:filePath])
                 {
-                   [[document textStorage] replaceCharactersInRange: NSMakeRange(entryFunRange.location + entryFunRange.length, 0) withString:@"\n    [Crasheye initWithAppKey:@\"<#Appkey #>\"];" withUndoManager:[document undoManager]]; 
+                   [[document textStorage] replaceCharactersInRange: NSMakeRange(entryFunRange.location + entryFunRange.length, 0) withString:@"\n    [Crasheye initWithAppKey:@\"<#Appkey #>\"];\n" withUndoManager:[document undoManager]];
                 }
                 
             }
