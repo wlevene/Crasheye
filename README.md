@@ -47,7 +47,7 @@
 
 ## 注意事项
 
->   在使用此插件之前，如果工程中已手工接入过Crasheye请，先删除Crasheye.h & libCrasheye.a 两个文件
+>   在使用此插件之前，如果工程中已手工接入过Crasheye,请先删除Crasheye.h & libCrasheye.a 两个文件
 
 ---
 * 更多内容请访问:[http://www.crasheye.cn](http://www.crasheye.cn)
