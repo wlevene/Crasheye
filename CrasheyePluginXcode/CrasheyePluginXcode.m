@@ -112,7 +112,7 @@ static CrasheyePluginXcode *sharedPlugin;
         }];
         
         // Sample Menu Item:
-//        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
+        //        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
         
         
         
@@ -207,19 +207,19 @@ static CrasheyePluginXcode *sharedPlugin;
 - (void) doAbout
 {
     
-   
+    
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:@"Crasheye"];
     [alert setInformativeText:@"welcome!"];
     [alert setAlertStyle:NSWarningAlertStyle];
     [alert runModal];
     return;
-//    [self.xcodeConsole appendText:[self progressString:0]];
-//    
-//    for (int i = 0; i <= 10; i++)
-//    {
-//        [self performSelector:@selector(printfDownloadProgress1:) withObject:[NSNumber numberWithInt:i * 10] afterDelay:i];
-//    }
+    //    [self.xcodeConsole appendText:[self progressString:0]];
+    //
+    //    for (int i = 0; i <= 10; i++)
+    //    {
+    //        [self performSelector:@selector(printfDownloadProgress1:) withObject:[NSNumber numberWithInt:i * 10] afterDelay:i];
+    //    }
 }
 
 -(void) printfDownloadProgress1:(NSNumber *) progress
@@ -264,7 +264,7 @@ static CrasheyePluginXcode *sharedPlugin;
 - (void) clearOldFile
 {
     XCProject* project = [[XCProject alloc] initWithFilePath:self.mProject.projectFileDir];
-
+    
     NSArray * groups =[project groups];
     
     BOOL hasCrasheyeGroup = NO;
@@ -303,18 +303,18 @@ static CrasheyePluginXcode *sharedPlugin;
                         [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
                     }
                     
-//                    NSString* productsGroupKey = [project productsGroupKeyForKey:[file key]];
-
+                    //                    NSString* productsGroupKey = [project productsGroupKeyForKey:[file key]];
                     
-//                    NSLog(@"dsfsdfsdf:%@", [file key]);
-
+                    
+                    //                    NSLog(@"dsfsdfsdf:%@", [file key]);
+                    
                     [[project objects] removeObjectForKey:[file key]];
-//                    [project removeFromProjectReferences:[file key] forProductsGroup:productsGroupKey];
-
-//                    for (XCTarget* target in [project targets])
-//                    {
-//                        [target removeMemberWithKey:[file key]];
-//                    }
+                    //                    [project removeFromProjectReferences:[file key] forProductsGroup:productsGroupKey];
+                    
+                    //                    for (XCTarget* target in [project targets])
+                    //                    {
+                    //                        [target removeMemberWithKey:[file key]];
+                    //                    }
                     
                     continue;
                 }
@@ -325,8 +325,8 @@ static CrasheyePluginXcode *sharedPlugin;
                     {
                         [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
                     }
-                     [[project objects] removeObjectForKey:[file key]];
-//                    [[project objects] removeObjectForKey:[file buildFileKey]];
+                    [[project objects] removeObjectForKey:[file key]];
+                    //                    [[project objects] removeObjectForKey:[file buildFileKey]];
                     continue;
                 }
             }
@@ -334,7 +334,7 @@ static CrasheyePluginXcode *sharedPlugin;
     }
     
     [project save];
-
+    
 }
 
 -(void) installPot
@@ -350,11 +350,11 @@ static CrasheyePluginXcode *sharedPlugin;
 
 - (void) doInstall {
     
- 
-//    NSLog(@"ProjectName:%@", self.mProject.projectName);
-//    NSLog(@"Workspace:%@", self.mProject.workspacePath);
-//    NSLog(@"Project File:%@", self.mProject.projectFile);
-//    NSLog(@"Installed Crasheye: %d",  [self.mProject hasCrasheyefile]);
+    
+    //    NSLog(@"ProjectName:%@", self.mProject.projectName);
+    //    NSLog(@"Workspace:%@", self.mProject.workspacePath);
+    //    NSLog(@"Project File:%@", self.mProject.projectFile);
+    //    NSLog(@"Installed Crasheye: %d",  [self.mProject hasCrasheyefile]);
     
     [self installPot];
     
@@ -382,67 +382,67 @@ static CrasheyePluginXcode *sharedPlugin;
     
     BOOL installed = [self isInstallCrasheye];
     
-        [self downloadCrashSDKConfig:^{
-          
-            if (!installed ||
-                (self.CrasheyeSdkCurrentVersion != self.CrasheyeSdkNewVersion))
+    [self downloadCrashSDKConfig:^{
+        
+        if (!installed ||
+            (self.CrasheyeSdkCurrentVersion != self.CrasheyeSdkNewVersion))
+        {
+            if (!installed)
             {
-                if (!installed)
-                {
-                    self.mProject = [MTProject projectForKeyWindow];
-                    self.xcodeConsole = [MTCodeConsole consoleForKeyWindow];
-                    [self clearOldFile];
-                }
-                
-                NSString * info = [NSString stringWithFormat:@"There is new version (%@) for Crasheye, Do you want to Install & Update now?", self.CrasheyeSdkNewVersion];
-                
-                NSAlert *alert = [NSAlert alertWithMessageText: @"Do you want to update Crasheye?"
-                                                 defaultButton: @"Install & Update"
-                                               alternateButton: @"Don't Install & Update"
-                                                   otherButton: @"Cancel"
-                                     informativeTextWithFormat: info];
-                
-                [alert compatibleBeginSheetModalForWindow: [NSApp keyWindow] completionHandler: ^(NSInteger returnCode){
-                    if (returnCode == NSAlertDefaultReturn ) {
-                        [self downloadCrashSDK:^{
-                            [self configProjectBuildSetting];
-////
-                            [self addCrasheyeCodeToAppDelegateFile];
-                            
-                        
-                            [self.xcodeConsole appendText:@"End install Crasheye SDK\n"];
-                            [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
-                        }];
-                    }
-                    else if (returnCode == NSAlertAlternateReturn) {
-                        
+                self.mProject = [MTProject projectForKeyWindow];
+                self.xcodeConsole = [MTCodeConsole consoleForKeyWindow];
+                [self clearOldFile];
+            }
+            
+            NSString * info = [NSString stringWithFormat:@"There is new version (%@) for Crasheye, Do you want to Install & Update now?", self.CrasheyeSdkNewVersion];
+            
+            NSAlert *alert = [NSAlert alertWithMessageText: @"Do you want to update Crasheye?"
+                                             defaultButton: @"Install & Update"
+                                           alternateButton: @"Don't Install & Update"
+                                               otherButton: @"Cancel"
+                                 informativeTextWithFormat: info];
+            
+            [alert compatibleBeginSheetModalForWindow: [NSApp keyWindow] completionHandler: ^(NSInteger returnCode){
+                if (returnCode == NSAlertDefaultReturn ) {
+                    [self downloadCrashSDK:^{
                         [self configProjectBuildSetting];
+                        ////
+                        [self addCrasheyeCodeToAppDelegateFile];
                         
-                        [self.xcodeConsole appendText:@"User do not Install Crasheye SDK\n"];
+                        
+                        [self.xcodeConsole appendText:@"End install Crasheye SDK\n"];
                         [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
-                    }
-                    else if (returnCode == NSAlertOtherReturn) {
-                        [self.xcodeConsole appendText:@"User Canceled Install Crasheye SDK\n"];
-                        [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
-                    }
-                }];
-            }
+                    }];
+                }
+                else if (returnCode == NSAlertAlternateReturn) {
+                    
+                    [self configProjectBuildSetting];
+                    
+                    [self.xcodeConsole appendText:@"User do not Install Crasheye SDK\n"];
+                    [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
+                }
+                else if (returnCode == NSAlertOtherReturn) {
+                    [self.xcodeConsole appendText:@"User Canceled Install Crasheye SDK\n"];
+                    [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
+                }
+            }];
+        }
+        
+        
+        if (self.CrasheyeSdkNewVersion == nil ||
+            [self.CrasheyeSdkNewVersion length] <= 0 ||
+            ([self.CrasheyeSdkCurrentVersion isEqualToString:self.CrasheyeSdkNewVersion]))
+        {
+            [self configProjectBuildSetting];
+            [self addCrasheyeCodeToAppDelegateFile];
             
-            
-            if (self.CrasheyeSdkNewVersion == nil ||
-                [self.CrasheyeSdkNewVersion length] <= 0 ||
-                ([self.CrasheyeSdkCurrentVersion isEqualToString:self.CrasheyeSdkNewVersion]))
-            {
-                [self configProjectBuildSetting];
-                [self addCrasheyeCodeToAppDelegateFile];
-                
-                [self.xcodeConsole appendText:@"Crasheye is lastest version :) \n"];
-                [self.xcodeConsole appendText:@"End install Crasheye SDK\n"];
-                [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
-                return ;
-            }
-            
-        }];
+            [self.xcodeConsole appendText:@"Crasheye is lastest version :) \n"];
+            [self.xcodeConsole appendText:@"End install Crasheye SDK\n"];
+            [self.xcodeConsole appendText:@"-------------------- Crasheye Xcode Plugin © --------------------\n"];
+            return ;
+        }
+        
+    }];
 }
 
 
@@ -464,7 +464,7 @@ static CrasheyePluginXcode *sharedPlugin;
     [project save];
     
     [self addTransportSecurityInPlistFile];
-    [self.xcodeConsole appendText:@"    4: Add TransportSecurity for rasheye.cn                     √\n"];
+    [self.xcodeConsole appendText:@"    4: Add TransportSecurity for crasheye.cn                     √\n"];
     [self.xcodeConsole appendText:@"Check & Repair Project Config Finish                            √\n"];
 }
 
@@ -480,7 +480,7 @@ static CrasheyePluginXcode *sharedPlugin;
     for (XCSourceFile * file in allfiles)
     {
         NSString * fileName = [file name];
-//        NSLog(@"Crasheye fileName:%@", fileName);
+        //        NSLog(@"Crasheye fileName:%@", fileName);
         
         if (fileName == nil ||
             [fileName length] <=0)
@@ -489,11 +489,22 @@ static CrasheyePluginXcode *sharedPlugin;
         }
         
         
+        
+        
         NSString * fullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
         
-        if ([fullPath containsString:@"UITests"]) {
-            continue;
+        
+        
+        if([fullPath length] >= 5) {
+            NSString *  flagStr = [fullPath substringFromIndex:5];
+            
+            if ([flagStr isEqualToString:@"Tests"] ||
+                [flagStr containsString:@"Tests."] ||
+                [flagStr containsString:@"UITests"]) {
+                continue;
+            }
         }
+        
         
         if (fileName != nil &&
             [fileName isEqualToString:@"Info.plist"])
@@ -521,7 +532,7 @@ static CrasheyePluginXcode *sharedPlugin;
     
     
     NSDictionary * crasheyDomain = @{@"NSExceptionAllowsInsecureHTTPLoads" : @YES,
-                                            @"NSIncludesSubdomains": @YES};
+                                     @"NSIncludesSubdomains": @YES};
     
     [NSExceptionDomains setObject:crasheyDomain forKey:@"crasheye.cn"];
     [NSAppTransportSecurity setObject:NSExceptionDomains forKey:@"NSExceptionDomains"];
@@ -542,7 +553,7 @@ static CrasheyePluginXcode *sharedPlugin;
     {
         frameworksGroup = [project groupWithPathFromRoot:@"Frameworks"];
     }
-
+    
     
     XCFrameworkDefinition* frameworkDefinition = [[XCFrameworkDefinition alloc] initWithFilePath:[XCFrameworkPath libzDylibPath] copyToDestination:NO];
     
@@ -582,20 +593,20 @@ static CrasheyePluginXcode *sharedPlugin;
     }
     
     NSString * crashDir = [self.mProject.directoryPath stringByAppendingPathComponent:@"Crasheye"];
-//    NSString * aFile = [crashDir stringByAppendingPathComponent:@"libCrasheye.lib"];
-//    NSString * hFile = [crashDir stringByAppendingPathComponent:@"Crasheye.header"];
+    //    NSString * aFile = [crashDir stringByAppendingPathComponent:@"libCrasheye.lib"];
+    //    NSString * hFile = [crashDir stringByAppendingPathComponent:@"Crasheye.header"];
     
     if (!self.installHeader && self.headerFileData != nil) {
         XCSourceFileDefinition * header = [[XCSourceFileDefinition alloc] initWithName:@"Crasheye.h" data:self.headerFileData type:SourceCodeHeader];
         
         [crasheyeGroup addSourceFile:header];
     }
-
+    
     
     if (!self.installALib && self.libFileData != nil)
     {
-//        XCFrameworkDefinition* frameworkDefinition = [[XCFrameworkDefinition alloc] initWithFilePath:aFile copyToDestination:NO];
-//        [crasheyeGroup addFramework:frameworkDefinition];
+        //        XCFrameworkDefinition* frameworkDefinition = [[XCFrameworkDefinition alloc] initWithFilePath:aFile copyToDestination:NO];
+        //        [crasheyeGroup addFramework:frameworkDefinition];
         
         XCSourceFileDefinition* libFile = [[XCSourceFileDefinition alloc] initWithName:@"libCrasheye.a" data:self.libFileData type:Archive];
         [crasheyeGroup addSourceFile:libFile];
@@ -603,7 +614,7 @@ static CrasheyePluginXcode *sharedPlugin;
         XCSourceFile * libSourceFile = [project fileWithName:@"libCrasheye.a"];
         
         XCTarget* target = [project targetWithName:self.mProject.projectName];
-       
+        
         [target addMember:libSourceFile];
         for (NSString* configName in [target configurations])
         {
@@ -754,7 +765,7 @@ static CrasheyePluginXcode *sharedPlugin;
                 [file type] == SourceCodeObjCPlusPlus)
             {
                 headFullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
-
+                
                 
                 [self openMainCodeFile:headFullPath];
                 
@@ -785,7 +796,7 @@ static CrasheyePluginXcode *sharedPlugin;
         NSLog(@"err:%@", err);
         return;
     }
-
+    
     
     if ( !fileContent ||
         [fileContent length] <= 0 )
@@ -814,8 +825,8 @@ static CrasheyePluginXcode *sharedPlugin;
         NSRange firstImportRange = [fileContent rangeOfRegex:regStr];
         
         NSString * addHeaderCode = @"\n#import \"Crasheye.h\"\n";
-    
-    
+        
+        
         NSTextView * textView = [MTSharedXcode textView];
         if ( textView )
         {
@@ -831,7 +842,7 @@ static CrasheyePluginXcode *sharedPlugin;
             }else {
                 if (![self isAddedImportCrasheyeInitCode:filePath])
                 {
-                   [[document textStorage] replaceCharactersInRange: NSMakeRange(entryFunRange.location + entryFunRange.length, 0) withString:@"\n    [Crasheye initWithAppKey:@\"<#Appkey #>\"];\n" withUndoManager:[document undoManager]];
+                    [[document textStorage] replaceCharactersInRange: NSMakeRange(entryFunRange.location + entryFunRange.length, 0) withString:@"\n    [Crasheye initWithAppKey:@\"<#Appkey #>\"];\n" withUndoManager:[document undoManager]];
                 }
                 
             }
@@ -913,12 +924,12 @@ static CrasheyePluginXcode *sharedPlugin;
 //        if (fileName != nil)
 //        {
 //            NSString * headFullPath = nil;
-//            
+//
 //            if ([file type] == SourceCodeObjC ||
 //                [file type] == SourceCodeObjCPlusPlus)
 //            {
 //                headFullPath = [self.mProject.directoryPath stringByAppendingPathComponent:[file pathRelativeToProjectRoot]];
-//                
+//
 //                NSError * err = nil;
 //                NSString * hFileString = [NSString stringWithContentsOfFile:headFullPath
 //                                                                   encoding:NSUTF8StringEncoding
@@ -928,9 +939,9 @@ static CrasheyePluginXcode *sharedPlugin;
 //                    NSLog(@"err:%@", err);
 //                    continue;
 //                }
-//                
+//
 //                NSArray * codesLineArray = [hFileString componentsSeparatedByString:@"\n"];
-//                
+//
 //                int line = 0;
 //                BOOL findFun = NO;
 //                int firstImportLine = 0;
@@ -939,32 +950,32 @@ static CrasheyePluginXcode *sharedPlugin;
 //                {
 //                    line++;
 //                    NSString * linCodeEx = [lineCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//                    
+//
 //                    if (findFun) {
-//                        
+//
 //                        if (kuohaoFind) {
 //                            break;
 //                        }
-//                        
+//
 //                        if (linCodeEx == nil ||
 //                            [linCodeEx isEqualToString:@""])
 //                        {
 //                            continue;
 //                        }
-//                        
+//
 //                        if ([linCodeEx isEqualToString:@"{"])
 //                        {
 //                            break;
 //                        }
 //                    }
-//                    
+//
 //                    if (firstImportLine == 0 &&
 //                        [linCodeEx containsString:@"#import"])
 //                    {
 //                        firstImportLine = line;
 //                    }
 //
-//                    
+//
 //                    // TODO... 规则可丰富
 //                    if ([linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary *)launchOptions"] ||
 //                        [linCodeEx containsString:@"didFinishLaunchingWithOptions:(NSDictionary*)launchOptions"])
@@ -976,29 +987,29 @@ static CrasheyePluginXcode *sharedPlugin;
 //                        }
 //                    }
 //                }
-//                
+//
 //                if (!findFun)
 //                {
 //                    continue;
 //                }
-//                
+//
 //                NSString * addHeaderCode = @"#import \"Crasheye.h\"";
 //                NSString * addCode = @"    [Crasheye initWithAppKey:@\"<#Appkey #>\"];";
 //                NSMutableArray * newCodeArray = [NSMutableArray arrayWithArray:codesLineArray];
-//                
+//
 //                if (![hFileString containsString:addHeaderCode])
 //                {
 //                    [newCodeArray insertObject:addHeaderCode atIndex:firstImportLine];
 //                }
-//                
+//
 //                if (![hFileString containsString:@"[Crasheye initWithAppKey:"])
 //                {
 //                    [newCodeArray insertObject:addCode atIndex:line];
 //                }
-//                
-//                
+//
+//
 //                NSString * newCodeString = [newCodeArray bondingAString:@"\n"];
-//                
+//
 //                id<NSApplicationDelegate> appDelegate = (id<NSApplicationDelegate>)[NSApp delegate];
 //                if ([appDelegate application:NSApp openFile:headFullPath])
 //                {
@@ -1008,26 +1019,26 @@ static CrasheyePluginXcode *sharedPlugin;
 //                        IDESourceCodeDocument * document = [MTSharedXcode sourceCodeDocument];
 //                        if ( !document )
 //                            return;
-//                        
+//
 //                        [[
 //                          document
 //                          textStorage] beginEditing];
-//                        
+//
 //                        //        [textView setString:@"123"];
-//                        
+//
 //                        [[document textStorage] replaceCharactersInRange: NSMakeRange(0, textView.string.length) withString:newCodeString withUndoManager:[document undoManager]];
-//                        
+//
 //                        [[document textStorage] endEditing];
-//                        
+//
 //                        [document saveDocument:nil];
-//                        
-//                        
+//
+//
 //                        int highlightline = (int)[newCodeArray indexOfObject:addCode];
-//                        
-//                        
+//
+//
 //                        [CrasheyePluginXcode highlightItem:highlightline + 1 inTextView:[MTSharedXcode textView]];
-//                        
-//                        
+//
+//
 //                        [self.xcodeConsole appendText:@"Add Crash Code √\n"];
 //                        return;
 //                    }
@@ -1042,16 +1053,16 @@ static CrasheyePluginXcode *sharedPlugin;
 
 -(void) updateCrasheye
 {
-//    NSURL* docsetURL = [NSURL URLWithString:[NSString stringWithFormat:DOCSET_ARCHIVE_FORMAT, podName]];
-//    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:docsetURL]
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse* response, NSData* xarData, NSError* connectionError) {
-//                               if (xarData) {
-//                                   NSString* fileName = [NSString stringWithFormat:@"%@.xar", podName];
-//                                   NSString *tmpFilePath = [NSString pathWithComponents:@[NSTemporaryDirectory(), fileName]];
-//                                   [xarData writeToFile:tmpFilePath atomically:YES];
-//                                   [self extractAndInstallDocsAtPath:tmpFilePath];
-//                               }
+    //    NSURL* docsetURL = [NSURL URLWithString:[NSString stringWithFormat:DOCSET_ARCHIVE_FORMAT, podName]];
+    //    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:docsetURL]
+    //                                       queue:[NSOperationQueue mainQueue]
+    //                           completionHandler:^(NSURLResponse* response, NSData* xarData, NSError* connectionError) {
+    //                               if (xarData) {
+    //                                   NSString* fileName = [NSString stringWithFormat:@"%@.xar", podName];
+    //                                   NSString *tmpFilePath = [NSString pathWithComponents:@[NSTemporaryDirectory(), fileName]];
+    //                                   [xarData writeToFile:tmpFilePath atomically:YES];
+    //                                   [self extractAndInstallDocsAtPath:tmpFilePath];
+    //                               }
 }
 
 - (void) downloadCrashSDKConfig:(void (^)()) handler
@@ -1102,7 +1113,7 @@ static CrasheyePluginXcode *sharedPlugin;
 
 - (void) downloadCrashSDK:(void (^)()) handler
 {
-        //NSURL* docsetURL = [NSURL URLWithString:@"http://www.crasheye.cn/downloads/sdk/ios/crasheye_ios_v1.2.3.zip"];
+    //NSURL* docsetURL = [NSURL URLWithString:@"http://www.crasheye.cn/downloads/sdk/ios/crasheye_ios_v1.2.3.zip"];
     
     if (self.CrasheyeSdkDownloadUrl == nil ||
         [self.CrasheyeSdkDownloadUrl length] <= 0)
@@ -1112,7 +1123,7 @@ static CrasheyePluginXcode *sharedPlugin;
     
     NSURL* docsetURL = [NSURL URLWithString:self.CrasheyeSdkDownloadUrl];
     [self.xcodeConsole appendText:@"Downloading... Crasheye SDK\nplease wait, this may take a few seconds\n"];
-
+    
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:docsetURL] queue:[NSOperationQueue mainQueue]  completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError)
         {
@@ -1133,15 +1144,15 @@ static CrasheyePluginXcode *sharedPlugin;
                 }
                 
                 NSString * crashDir = [self.mProject.directoryPath stringByAppendingPathComponent:@"Crasheye"];
-//                NSString * aFile = [crashDir stringByAppendingPathComponent:@"libCrasheye.lib"];
-//                NSString * hFile = [crashDir stringByAppendingPathComponent:@"Crasheye.header"];
+                //                NSString * aFile = [crashDir stringByAppendingPathComponent:@"libCrasheye.lib"];
+                //                NSString * hFile = [crashDir stringByAppendingPathComponent:@"Crasheye.header"];
                 
                 [[NSFileManager defaultManager] createDirectoryAtPath:crashDir withIntermediateDirectories:YES attributes:nil error:&err];
                 
                 if (err != nil)
                 {
-//                    [self.xcodeConsole appendText:[NSString stringWithFormat:@"Write Crasheye SDK to local SDK Failed.. %@", err]];
-//                    return ;
+                    //                    [self.xcodeConsole appendText:[NSString stringWithFormat:@"Write Crasheye SDK to local SDK Failed.. %@", err]];
+                    //                    return ;
                 }
                 
                 for (ZZArchiveEntry* archiveEntry in zip.entries)
